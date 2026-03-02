@@ -1,0 +1,27 @@
+# ADR-0003: Approved Tech Stack
+
+## Context
+
+The backend and frontend stacks were explicitly discussed, along with alternatives such as Supabase and Convex.
+
+## Decision
+
+Use:
+
+- NestJS for the backend,
+- Drizzle ORM with PostgreSQL for persistence,
+- Better Auth for authentication,
+- React + Vite for the frontend,
+- shadcn/ui and TanStack Query for frontend UX and data handling.
+
+## Alternatives Considered
+
+- Convex as a backend platform.
+- Supabase as a backend/auth/database platform.
+- Vue or Svelte instead of React.
+
+## Consequences
+
+- Strong TypeScript consistency across the stack.
+- Conventional relational data model and migrations.
+- Slightly more implementation work than choosing a backend platform product, but higher architectural control.
