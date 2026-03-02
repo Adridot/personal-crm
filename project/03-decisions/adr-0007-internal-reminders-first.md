@@ -18,4 +18,4 @@ Implement reminders as an internal application capability first, without Google 
 - Faster MVP implementation and fewer provider dependencies.
 - Clearer ownership of reminder logic inside the product.
 - Google Tasks integration remains a future option.
-- Google Calendar quick scheduling remains an explicit open question rather than an approved requirement.
+- Google Calendar quick scheduling is explicitly deferred to backlog work rather than approved for MVP.

@@ -38,8 +38,10 @@ All user-owned tables should include `user_id` and must be queried with ownershi
   - `birthday`
   - `address`
   - `notes`
+  - `group_id` nullable
   - timestamps
 - Relationships:
+  - belongs to zero or one group
   - many-to-many with tags
   - one-to-many with interactions
   - one-to-many with reminders
@@ -47,9 +49,25 @@ All user-owned tables should include `user_id` and must be queried with ownershi
 - Version note:
   - required in MVP
 
+### `groups`
+
+- Purpose: relationship tiering for contacts such as close friends, friends, acquaintances, or other custom group buckets.
+- Key columns:
+  - `id`
+  - `user_id`
+  - `name`
+  - `color`
+  - `default_follow_up_interval_days` nullable
+  - `sort_order` nullable
+- Relationships:
+  - one-to-many with contacts
+  - may be referenced by reminders
+- Version note:
+  - required in MVP
+
 ### `tags`
 
-- Purpose: contact classification and filtering.
+- Purpose: descriptive labeling for source, topic, interests, industry, or other non-hierarchical qualifiers.
 - Key columns:
   - `id`
   - `user_id`
@@ -108,6 +126,7 @@ All user-owned tables should include `user_id` and must be queried with ownershi
   - `id`
   - `user_id`
   - `contact_id` nullable
+  - `group_id` nullable
   - `title`
   - `description`
   - `due_at`
@@ -116,6 +135,7 @@ All user-owned tables should include `user_id` and must be queried with ownershi
   - timestamps
 - Relationships:
   - may belong to a contact
+  - may belong to a group
 - Version note:
   - required in MVP
 
@@ -137,19 +157,20 @@ All user-owned tables should include `user_id` and must be queried with ownershi
 
 ### `imports`
 
-- Purpose: trace import executions and provider sync attempts.
+- Purpose: trace import executions and provider sync attempts as tracked jobs.
 - Key columns:
   - `id`
   - `user_id`
   - `source`
   - `status`
+  - `job_type`
   - `started_at`
   - `finished_at`
   - `details`
 - Relationships:
   - belongs to a user
 - Version note:
-  - required in MVP for Google import observability
+  - required in MVP for Google import job tracking and observability
 
 ### `ai_suggestions`
 
@@ -173,10 +194,11 @@ Custom fields were discussed, but they are not an active MVP feature and are not
 
 Do not implement `custom_fields` as an approved MVP requirement. Treat it as a backlog schema consideration only, to be revisited when the custom fields system is explicitly promoted.
 
-## Open Modeling Question
+## Group and Tag Model
 
-`groups` are part of the product language, but the canonical MVP persistence model is not finalized. Current recommendation:
+The canonical MVP model is now explicit:
 
-- commit to `tags` in MVP,
-- use tags as the minimum classification model,
-- and decide later whether groups become a first-class table or remain a UI abstraction.
+- `groups` are first-class entities and express relationship tiers,
+- each contact belongs to zero or one group,
+- groups may carry default follow-up attributes for future relationship scoring,
+- `tags` are separate many-to-many descriptors used for labeling and filtering.

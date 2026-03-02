@@ -37,6 +37,7 @@ This backlog is intentionally structured rather than fully issue-ready. These it
 ## Advanced UX
 
 - Board, gallery, or calendar views.
+- Google Calendar quick scheduling for fast meetup planning.
 - Saved views and richer filtering.
 - More mobile-oriented UI patterns once PWA direction is approved.
 

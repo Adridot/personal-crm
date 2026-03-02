@@ -8,12 +8,13 @@ This document is the hard boundary reference for what belongs in MVP, what is de
 | --- | --- | --- |
 | Email/password auth with Better Auth | Included | Required baseline. |
 | One account = one user | Included | Shared or collaborative accounts are not part of MVP. |
-| Google Contacts import | Included | Only import source approved for MVP. |
+| Google Contacts import | Included | Only import source approved for MVP, tracked as jobs from day one. |
 | Contact CRUD with fixed fields | Included | No custom fields UI. |
-| Tags-based classification | Included | Group semantics remain open; tags are the minimum committed feature. |
+| Groups | Included | Each contact belongs to zero or one group used for relationship tiering. |
+| Tags | Included | Tags qualify source, topic, or interests, independently of groups. |
 | Contact relationships | Included | Family, friend, colleague, and similar links. |
 | Interaction timeline | Included | Contact-scoped history only. |
-| Internal reminders | Included | Stored and managed in the application. |
+| Internal reminders | Included | Stored and managed in the application with one-time, weekly, monthly, and yearly recurrence. |
 | Dashboard | Included | Reminders, stale contacts, simple aggregate insights. |
 | Export and account deletion | Included | Privacy baseline. |
 | Frontend internationalization foundation | Included | All UI strings should be translation-ready from day one. |
@@ -39,6 +40,7 @@ This document is the hard boundary reference for what belongs in MVP, what is de
 | --- | --- | --- |
 | PWA support | Deferred to V2+ | Includes offline and push concerns. |
 | Beeper message ingestion | Deferred to V2+ | Messaging history is explicitly not part of MVP. |
+| Google Calendar quick scheduling | Deferred to V2+ | Explicit backlog item, not part of MVP implementation. |
 | Natural-language reminder creation | Deferred to V2+ | Depends on AI integration. |
 | Custom fields system | Deferred to V2+ | Includes schema and UI, not just storage ideas. |
 | Browser extension | Deferred to V2+ | Contact capture from the web. |
@@ -52,6 +54,7 @@ This document is the hard boundary reference for what belongs in MVP, what is de
 The following features were discussed, but they are explicitly not approved for early implementation:
 
 - Beeper messages and message syncing.
+- Google Calendar quick scheduling.
 - Custom fields UI or dynamic schema editing.
 - Google Tasks synchronization.
 - Multi-user shared accounts or collaborative workspaces.

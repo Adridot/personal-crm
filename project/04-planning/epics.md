@@ -19,7 +19,7 @@
 ## Epic 3: Google Contacts Import
 
 - Objective: ingest Google contacts as the initial dataset.
-- Included scope: OAuth connection, import execution, mapping, import history.
+- Included scope: OAuth connection, tracked import jobs, mapping, import history.
 - Excluded scope: multi-provider import, duplicate merge.
 - Dependencies: Epics 1 and 2.
 - Acceptance signal: a user can connect Google and see imported contacts in the app.
@@ -35,7 +35,7 @@
 ## Epic 5: Tags, Groups, and Relationships
 
 - Objective: add relationship context and classification.
-- Included scope: tags, contact tagging, relationship links, unresolved group decision tracking.
+- Included scope: groups, tags, contact group assignment, contact tagging, relationship links.
 - Excluded scope: advanced taxonomy systems.
 - Dependencies: Epic 4.
 - Acceptance signal: contacts can be classified and linked meaningfully.
@@ -52,7 +52,7 @@
 
 - Objective: turn the product into an action-oriented relationship tool.
 - Included scope: reminders, recurrence support, dashboard aggregations, stale contact indicators.
-- Excluded scope: Google Tasks sync and advanced AI suggestions.
+- Excluded scope: Google Tasks sync, Google Calendar quick scheduling, and advanced AI suggestions.
 - Dependencies: Epics 4, 5, and 6.
 - Acceptance signal: the dashboard helps the user decide what to do next.
 

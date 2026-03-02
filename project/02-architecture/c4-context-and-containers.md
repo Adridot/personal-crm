@@ -16,9 +16,9 @@
 
 External systems connected to the API:
 - Google People API (MVP)
-- Google Calendar (open question / optional integration path)
 - Apple/iCloud (V1)
 - Beeper (V2+)
+- Google Calendar (deferred backlog)
 ```
 
 ### Context Notes
@@ -37,11 +37,12 @@ External systems connected to the API:
 |  | React Frontend   | <-----> | NestJS API                |  |
 |  | - auth screens   |  HTTP   | - auth module             |  |
 |  | - dashboard      |         | - contacts module         |  |
-|  | - contacts list  |         | - tags module             |  |
-|  | - contact detail |         | - relationships module    |  |
-|  | - reminders UI   |         | - interactions module     |  |
-|  | - i18n           |         | - reminders module        |  |
-|  +------------------+         | - imports module          |  |
+|  | - contacts list  |         | - groups module           |  |
+|  | - contact detail |         | - tags module             |  |
+|  | - reminders UI   |         | - relationships module    |  |
+|  | - i18n           |         | - interactions module     |  |
+|  +------------------+         | - reminders module        |  |
+|                               | - imports/jobs module     |  |
 |                               | - exports module          |  |
 |                               +------------+--------------+  |
 |                                            |                 |
@@ -50,6 +51,7 @@ External systems connected to the API:
 |                                   | PostgreSQL           |   |
 |                                   | - users              |   |
 |                                   | - contacts           |   |
+|                                   | - groups             |   |
 |                                   | - tags               |   |
 |                                   | - relationships      |   |
 |                                   | - interactions       |   |
@@ -73,6 +75,7 @@ External systems connected to the API:
 - Authenticate the user and enforce ownership.
 - Expose REST endpoints for all approved MVP capabilities.
 - Integrate with Google People API for import.
+- Track imports as jobs from day one.
 - Persist domain data through Drizzle.
 
 ### PostgreSQL

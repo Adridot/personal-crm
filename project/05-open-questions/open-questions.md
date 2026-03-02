@@ -1,15 +1,21 @@
 # Open Questions
 
-These questions were intentionally left unresolved so they can be handled explicitly later instead of being decided accidentally in code.
+The initial high-priority questions from the planning phase have now been resolved.
 
-| Question | Current Recommendation | Impact | When It Must Be Decided |
-| --- | --- | --- | --- |
-| Is Google Calendar quick scheduling part of MVP or optional MVP+? | Treat it as optional until the core reminder system is working. | Affects integration scope and Google permission surface. | Before building reminder-adjacent UX beyond the core MVP. |
-| What reminder recurrence rules are required exactly? | Start with one-time, weekly, monthly, and yearly as the practical minimum. | Affects schema and reminder engine design. | Before implementing reminder recurrence storage. |
-| Are groups distinct from tags in the data model? | Use tags as the committed MVP baseline and keep group semantics unresolved. | Affects schema, UI language, and filtering model. | Before contact classification implementation is finalized. |
-| Should imports run synchronously or as tracked jobs from day one? | Start simple, but record import lifecycle in the `imports` table. | Affects API design and operational behavior. | Before Google import implementation. |
-| Does relationship scoring appear in MVP dashboard or only V1? | Keep MVP dashboard simple; defer formal scoring to V1. | Prevents scope creep in dashboard work. | Before dashboard aggregation logic is finalized. |
+## Active Open Questions
+
+No high-priority open questions are currently tracked in this file.
+
+## Recently Resolved Decisions
+
+| Question | Final Decision | Impact |
+| --- | --- | --- |
+| Is Google Calendar quick scheduling part of MVP or optional MVP+? | Backlog only, not part of MVP. | Keeps the reminder scope smaller and avoids unnecessary Google Calendar complexity. |
+| What reminder recurrence rules are required exactly? | One-time, weekly, monthly, and yearly. | Defines the minimum recurrence model for MVP reminders. |
+| Are groups distinct from tags in the data model? | Yes. Groups are first-class entities; tags remain descriptive labels. | Shapes the contact schema, filters, and future scoring model. |
+| Should imports run synchronously or as tracked jobs from day one? | Tracked jobs immediately. | Changes import API design, status visibility, and observability. |
+| Does relationship scoring appear in MVP dashboard or only V1? | Only V1. | Keeps MVP dashboard intentionally simple. |
 
 ## Working Rule
 
-If a feature depends on one of these questions and the answer is still open, prefer the recommendation above and record the choice in an ADR or implementation note when it becomes final.
+If new high-impact ambiguities appear, add them here only if they are truly unresolved and cannot be decided from the approved product and architecture baseline.

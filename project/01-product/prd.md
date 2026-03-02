@@ -17,7 +17,7 @@ People maintain meaningful relationships across fragmented systems such as Googl
 ## Jobs To Be Done
 
 - Import my contacts from Google into one place.
-- Organize contacts using tags and relationship context.
+- Organize contacts using groups, tags, and relationship context.
 - View what happened recently with each person.
 - Record new interactions quickly.
 - Create reminders so I stay in touch intentionally.
@@ -28,13 +28,13 @@ People maintain meaningful relationships across fragmented systems such as Googl
 | ID | User Story | Acceptance Criteria |
 | --- | --- | --- |
 | US-01 | As a user, I can register and log in with email and password. | Better Auth is integrated, authenticated sessions work, and protected resources are scoped to the current user. |
-| US-02 | As a user, I can connect Google and import my Google Contacts. | OAuth succeeds, contacts are fetched from Google People API, and imported contacts appear in the app. |
-| US-03 | As a user, I can browse, search, and filter my contacts. | Contact list supports pagination, text search, and tag-based filtering. |
+| US-02 | As a user, I can connect Google and import my Google Contacts. | OAuth succeeds, contacts are fetched from Google People API, imports are tracked as jobs, and imported contacts appear in the app. |
+| US-03 | As a user, I can browse, search, and filter my contacts. | Contact list supports pagination, text search, group filtering, and tag-based filtering. |
 | US-04 | As a user, I can create, edit, and delete contacts with fixed fields. | Contact CRUD works for name, email, phone, company, job title, birthday, address, and notes. |
-| US-05 | As a user, I can classify contacts using tags and basic group semantics. | I can create tags, assign tags to contacts, and use them in filtering. Group modeling remains an explicit open question. |
+| US-05 | As a user, I can classify contacts using groups and tags. | I can assign each contact to zero or one group, create and assign tags, and use both in filtering. Groups express relationship tiers, while tags describe source, topic, or interest. |
 | US-06 | As a user, I can link contacts together with relationship types. | A contact can reference another contact as family, friend, colleague, or another defined relationship type. |
 | US-07 | As a user, I can record interactions on a contact timeline. | I can add a dated interaction with a type and notes, and see interactions ordered chronologically. |
-| US-08 | As a user, I can create one-time or recurring reminders tied to contacts. | Reminders are stored internally, support recurrence rules, and appear in upcoming reminder views. |
+| US-08 | As a user, I can create reminders tied to contacts or groups. | Reminders are stored internally, support one-time, weekly, monthly, and yearly recurrence, and appear in upcoming reminder views. |
 | US-09 | As a user, I can see a dashboard with reminders and contacts needing attention. | The dashboard shows due reminders, recently inactive contacts, and simple relationship activity indicators. |
 | US-10 | As a user, I can export my data and delete my account. | Export produces structured data, account deletion removes owned data, and the flow is explicit and deliberate. |
 
@@ -52,6 +52,7 @@ People maintain meaningful relationships across fragmented systems such as Googl
 
 - Add PWA support and offline-oriented mobile behavior.
 - Add Beeper-based message ingestion and linking.
+- Add Google Calendar quick scheduling if it still proves useful after reminder flows stabilize.
 - Add natural-language reminders and richer AI assistance.
 - Add custom fields system and typed dynamic attributes.
 - Add browser capture workflows.

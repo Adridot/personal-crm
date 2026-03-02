@@ -19,11 +19,14 @@ It starts with Google Contacts as the only import source, adds structured contac
 - Email/password authentication with Better Auth.
 - One account maps to one user.
 - Google Contacts import via OAuth and Google People API.
+- Import execution tracked as jobs from day one.
 - Contact CRUD with fixed fields only.
-- Contact classification through tags, with group semantics still to be finalized.
+- One optional group per contact for relationship tiering.
+- Tags used separately for source, topic, or interest labeling.
 - Relationship links between contacts.
 - Interaction timeline per contact.
 - Internal reminders with punctual or recurring behavior.
+- Reminder recurrence baseline: one-time, weekly, monthly, and yearly.
 - Dashboard showing reminders and stale relationships.
 - Data export and account deletion.
 
@@ -40,6 +43,7 @@ It starts with Google Contacts as the only import source, adds structured contac
 
 ## Key Deferred Features
 
+- Google Calendar quick scheduling.
 - Google Tasks synchronization.
 - Beeper message ingestion.
 - PWA/mobile offline mode.

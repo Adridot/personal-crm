@@ -26,8 +26,15 @@ This document records the intended REST surface and API conventions. It is not a
 
 - Contact list must support:
   - text search,
+  - group filtering,
   - tag filtering,
   - future extensibility for inactive/recent filters.
+
+### Import Execution Model
+
+- Imports are tracked jobs from day one.
+- Import-triggering endpoints should create or run a job with visible status.
+- The client must be able to retrieve job status and outcomes explicitly.
 
 ### Error Format
 
@@ -74,6 +81,13 @@ Note: actual path details may align with Better Auth conventions during implemen
 - `PATCH /api/tags/:id`
 - `DELETE /api/tags/:id`
 
+### Groups
+
+- `GET /api/groups`
+- `POST /api/groups`
+- `PATCH /api/groups/:id`
+- `DELETE /api/groups/:id`
+
 ### Relationships
 
 - `POST /api/contacts/:id/relationships`
@@ -93,11 +107,19 @@ Note: actual path details may align with Better Auth conventions during implemen
 - `PATCH /api/reminders/:id`
 - `DELETE /api/reminders/:id`
 
+Reminder creation should support:
+
+- contact-linked reminders,
+- group-linked reminders,
+- recurrence values for one-time, weekly, monthly, and yearly.
+
 ### Imports
 
 - `POST /api/imports/google`
 - `GET /api/imports`
 - `GET /api/imports/:id`
+
+`POST /api/imports/google` should create or trigger a tracked import job and return a status resource that the frontend can observe.
 
 ### Exports / Account
 

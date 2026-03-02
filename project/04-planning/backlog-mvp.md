@@ -86,7 +86,7 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 ## MVP-010: Create contacts schema
 
 - Objective: introduce the core `contacts` persistence model.
-- Scope: Drizzle schema, migrations, fixed fields, timestamps.
+- Scope: Drizzle schema, migrations, fixed fields, `group_id`, timestamps.
 - Implementation notes: exclude custom fields from MVP schema commitments.
 - Dependencies: MVP-006.
 - Acceptance criteria: contacts table exists and matches the approved fixed-field model.
@@ -113,7 +113,7 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 ## MVP-013: Build contacts list page
 
 - Objective: provide the primary contact browsing interface.
-- Scope: paginated list UI, search input, loading and empty states.
+- Scope: paginated list UI, search input, group and tag filtering, loading and empty states.
 - Implementation notes: use TanStack Query for fetching.
 - Dependencies: MVP-012, MVP-004, MVP-005.
 - Acceptance criteria: user can browse and search owned contacts from the frontend.
@@ -122,7 +122,7 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 ## MVP-014: Build contact detail and edit page
 
 - Objective: support direct contact management in the UI.
-- Scope: contact detail view, edit form, delete action, fixed fields only.
+- Scope: contact detail view, edit form, group selection, delete action, fixed fields only.
 - Implementation notes: keep UX simple and translation-ready.
 - Dependencies: MVP-012, MVP-013.
 - Acceptance criteria: user can view, edit, and delete a contact from the UI.
@@ -132,28 +132,28 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 
 - Objective: support contact classification.
 - Scope: tags table, tag CRUD endpoints, ownership checks.
-- Implementation notes: do not over-model groups yet.
+- Implementation notes: tags are descriptive labels, not relationship tiers.
 - Dependencies: MVP-006, MVP-009.
 - Acceptance criteria: authenticated users can create and manage tags.
 - Estimate: 1 day
 
-## MVP-016: Add contact-tag assignments and filtering
+## MVP-016: Create groups schema and API
 
-- Objective: attach tags to contacts and filter by them.
-- Scope: join table, assignment endpoints or contact payload handling, list filtering.
-- Implementation notes: tags are the minimum guaranteed classification model.
-- Dependencies: MVP-012, MVP-015.
-- Acceptance criteria: contacts can be tagged and filtered by assigned tags.
+- Objective: support first-class relationship groups.
+- Scope: groups table, CRUD endpoints, ownership checks, default follow-up attribute support.
+- Implementation notes: each contact belongs to zero or one group.
+- Dependencies: MVP-006, MVP-009.
+- Acceptance criteria: authenticated users can create and manage groups.
 - Estimate: 1 day
 
-## MVP-017: Record the groups modeling decision
+## MVP-017: Add contact tagging, group assignment, and classification filters
 
-- Objective: resolve or temporarily constrain the groups concept for MVP delivery.
-- Scope: document whether groups are separate entities or not, and align UI wording.
-- Implementation notes: this may result in "tags only for MVP" if no separate model is justified.
-- Dependencies: MVP-015, MVP-016.
-- Acceptance criteria: docs and backlog remain internally consistent about groups.
-- Estimate: 0.5 to 1 day
+- Objective: make the classification model usable in the product.
+- Scope: tag assignment, `group_id` handling, list filtering by group and tag.
+- Implementation notes: tags and groups serve different product purposes and must remain distinct in UI wording.
+- Dependencies: MVP-012, MVP-015, MVP-016.
+- Acceptance criteria: contacts can be tagged, assigned to groups, and filtered by either dimension.
+- Estimate: 1 day
 
 ## MVP-018: Create relationships schema and API
 
@@ -195,24 +195,24 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 
 - Objective: support scheduled follow-up reminders.
 - Scope: reminders table, recurrence representation, status field design.
-- Implementation notes: keep rules simple but explicit.
+- Implementation notes: baseline recurrence must support one-time, weekly, monthly, and yearly.
 - Dependencies: MVP-006, MVP-009.
-- Acceptance criteria: reminder records support one-time and recurring use cases.
+- Acceptance criteria: reminder records support one-time, weekly, monthly, and yearly use cases.
 - Estimate: 1 day
 
 ## MVP-023: Expose reminder endpoints
 
 - Objective: make reminders manageable through the API.
 - Scope: list, create, update, delete reminder endpoints.
-- Implementation notes: contact-linked reminders are the primary use case.
+- Implementation notes: contact-linked and group-linked reminders are both supported use cases.
 - Dependencies: MVP-022.
-- Acceptance criteria: authenticated users can manage reminders for their own contacts.
+- Acceptance criteria: authenticated users can manage reminders for their own contacts and groups.
 - Estimate: 1 day
 
 ## MVP-024: Build reminders UI flows
 
 - Objective: make reminders usable from the frontend.
-- Scope: reminder creation, editing, completion state, due-date views.
+- Scope: reminder creation, editing, completion state, due-date views, contact or group targeting.
 - Implementation notes: no Google Tasks sync.
 - Dependencies: MVP-023, MVP-014.
 - Acceptance criteria: user can create and manage reminders through the UI.
@@ -239,8 +239,8 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 ## MVP-027: Add import execution endpoint and import history
 
 - Objective: make imports observable and repeatable.
-- Scope: import trigger endpoint, `imports` table usage, status updates.
-- Implementation notes: start simple; background jobs are not mandatory unless needed.
+- Scope: tracked import job creation, `imports` table usage, status updates, job status retrieval.
+- Implementation notes: tracked jobs are required from day one, even if initial processing still runs in the main application process.
 - Dependencies: MVP-026.
 - Acceptance criteria: the app records when imports start, finish, or fail.
 - Estimate: 1 day
@@ -248,7 +248,7 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 ## MVP-028: Build Google import UI
 
 - Objective: let users trigger contact import from the frontend.
-- Scope: connect flow, import action, status display, error states.
+- Scope: connect flow, import action, job status display, error states.
 - Implementation notes: keep UX explicit and safe.
 - Dependencies: MVP-027, MVP-013.
 - Acceptance criteria: user can connect Google, run an import, and see status feedback in the UI.

@@ -8,6 +8,8 @@
 - API style: REST-first.
 - Data isolation: one PostgreSQL database with logical per-user isolation via `user_id`.
 - Reminder model: internal reminder system first.
+- Reminder recurrence baseline: one-time, weekly, monthly, yearly.
+- Import model: tracked jobs from day one.
 - Internationalization: frontend strings must be translation-ready from day one.
 
 ## Guiding Principles
@@ -37,11 +39,12 @@ The NestJS application should be split into domain-focused modules, not a monoli
 - Auth
 - Users / Account
 - Contacts
+- Groups
 - Tags / Classification
 - Relationships
 - Interactions
 - Reminders
-- Imports
+- Imports / Import Jobs
 - Exports / Account deletion
 
 Deferred modules that should not block MVP:
