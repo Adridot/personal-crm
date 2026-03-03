@@ -10,6 +10,7 @@ Project planning and architecture documentation live in [project/README.md](proj
 - `pnpm build`
 - `pnpm lint`
 - `pnpm lint:fix`
+- `pnpm check`
 - `pnpm format`
 - `pnpm test`
 - `pnpm typecheck`
