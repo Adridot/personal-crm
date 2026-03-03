@@ -159,9 +159,9 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 
 - Objective: support semantic links between contacts.
 - Scope: relationship table, create/delete endpoints, allowed relationship types.
-- Implementation notes: ensure both linked contacts belong to the same user.
+- Implementation notes: ensure both linked contacts belong to the same user, store contact pairs in canonical order, add a `CHECK` constraint enforcing `contact_id_1 < contact_id_2`, and add a `UNIQUE` constraint on `(user_id, contact_id_1, contact_id_2)`.
 - Dependencies: MVP-010, MVP-009.
-- Acceptance criteria: user can create and remove relationship links between owned contacts.
+- Acceptance criteria: user can create and remove relationship links between owned contacts, reverse-order duplicates cannot be inserted, and self-links are rejected.
 - Estimate: 1 day
 
 ## MVP-019: Add relationships UI to contact detail
