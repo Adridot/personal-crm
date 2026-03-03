@@ -38,10 +38,10 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 ## MVP-004: Bootstrap React frontend application
 
 - Objective: establish the frontend project skeleton.
-- Scope: Vite app, route shell, shadcn/ui baseline, TanStack Query setup.
-- Implementation notes: do not build feature pages yet.
+- Scope: Vite app, TanStack Router route shell, shadcn/ui baseline on Base UI, TanStack Query setup, and a local `/api` proxy to the NestJS backend.
+- Implementation notes: use the shadcn CLI in a controlled way; keep only the generated baseline needed for the shell; do not build feature pages yet; do not adopt TanStack Start in MVP while NestJS remains the primary backend.
 - Dependencies: MVP-001.
-- Acceptance criteria: frontend boots locally and renders an application shell.
+- Acceptance criteria: frontend boots locally, renders an application shell, uses TanStack Router for the initial route tree, and has a working Query client/provider baseline.
 - Estimate: 1 day
 
 ## MVP-005: Add frontend i18n foundation

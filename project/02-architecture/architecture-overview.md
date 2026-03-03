@@ -4,7 +4,7 @@
 
 - Repository model: monorepo.
 - Workspace tooling: `pnpm` workspaces + Turborepo.
-- Frontend: React + Vite + shadcn/ui + TanStack Query.
+- Frontend: React + Vite + TanStack Router + TanStack Query + shadcn/ui on Base UI.
 - Backend: NestJS + Drizzle ORM + PostgreSQL + Better Auth.
 - Shared contract strategy: a focused internal package will hold shared Zod schemas and inferred TypeScript types for transport-level contracts.
 - API style: REST-first.
@@ -83,8 +83,12 @@ The frontend is a single-page application with:
 - authenticated routes,
 - translation-ready copy,
 - dashboard and contacts views as first-class pages,
+- TanStack Router as the routing baseline,
 - TanStack Query for server data synchronization,
-- and UI primitives based on shadcn/ui.
+- UI primitives based on shadcn/ui configured for Base UI,
+- and a Vite development server proxying `/api` calls to the NestJS backend.
+
+TanStack Start was evaluated for the frontend, but it is intentionally deferred while NestJS remains the primary backend runtime. The additional full-stack features in TanStack Start are not needed for the MVP shell and would overlap with responsibilities already assigned to NestJS.
 
 ## Data Ownership Model
 

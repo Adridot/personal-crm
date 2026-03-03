@@ -13,6 +13,7 @@
 | Dashboard | Show due reminders and inactive relationships | Gives an at-a-glance action view | MVP | Reminders, interactions, contacts | Exact scoring remains simple in MVP |
 | Data Export | Export contacts and history | Supports data portability | MVP | Contacts, interactions, reminders | CSV/JSON acceptable |
 | Account Deletion | Delete account and owned data | Supports privacy expectations | MVP | Auth, data ownership | Explicit destructive flow |
+| Frontend App Shell | Route-based web shell for dashboard and contacts with shared layout, navigation, and client state plumbing | Gives the product a stable UI foundation without prematurely building feature details | MVP | React, Vite, TanStack Router, TanStack Query, shadcn/ui | Use TanStack Router and Query; keep the shell translation-ready; evaluate TanStack Start later only if SSR or server functions become necessary |
 | Frontend i18n | Translation-ready UI strings and locale support | Reduces future internationalization cost | MVP | Frontend shell | Backend code remains English-only |
 | Centralized Brand Configuration | Single source of truth for user-visible product name, description, and related metadata | Reduces future rebranding cost without destabilizing technical identifiers | V1 | Frontend shell, future email/metadata usage | Keep `personal-crm` as the stable internal technical identity |
 | Google Calendar Quick Scheduling | Launch or create a calendar event from a contact flow | Makes planning a meetup faster | V2+ | Google integration | Explicit backlog item, not part of MVP or V1 |
