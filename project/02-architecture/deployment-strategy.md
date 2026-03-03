@@ -25,13 +25,13 @@ Start with the simplest environment model that supports development quality:
 GitHub Actions should eventually cover:
 
 - install,
-- lint,
+- `pnpm check`,
 - typecheck,
 - test,
 - build,
 - and migration checks.
 
-Package-oriented commands such as `dev`, `build`, `lint`, `test`, and `typecheck` should delegate through Turborepo so CI and local development use the same entry points. Repo-wide formatting or fix commands may still invoke their tools directly at the root.
+Package-oriented commands such as `dev`, `build`, `lint`, `test`, and `typecheck` should delegate through Turborepo so local development and package-targeted runs share the same entry points. Repo-wide quality commands such as `check`, `lint:fix`, and `format` should run directly at the root against the shared Biome and Ultracite configuration.
 
 ## Database Migrations
 
