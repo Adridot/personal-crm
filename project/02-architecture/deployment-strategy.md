@@ -31,7 +31,7 @@ GitHub Actions should eventually cover:
 - build,
 - and migration checks.
 
-Package-oriented commands such as `dev`, `build`, `lint`, `test`, and `typecheck` should delegate through Turborepo so local development and package-targeted runs share the same entry points. Repo-wide quality commands such as `check`, `lint:fix`, and `format` should run directly at the root against the shared Biome and Ultracite configuration.
+Package-oriented commands such as `dev`, `build`, `lint`, `test`, and `typecheck` should delegate through Turborepo so local development and package-targeted runs share the same entry points. Repo-wide quality commands such as `check`, `fix`, and `format` should run directly at the root against the shared Biome and Ultracite configuration.
 
 ## Database Migrations
 

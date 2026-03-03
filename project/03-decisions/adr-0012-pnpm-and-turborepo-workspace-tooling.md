@@ -12,7 +12,7 @@ Use:
 - Turborepo for task orchestration, caching, and package-aware execution.
 - Root package-aware commands such as `dev`, `build`, `lint`, `test`, and `typecheck` should delegate to `turbo run ...`.
 - Task implementations should live in the relevant workspace `package.json` files.
-- Repo-wide quality commands such as `check`, `lint:fix`, and `format` should run directly from the root against the shared Biome and Ultracite configuration.
+- Repo-wide quality commands such as `check`, `fix`, and `format` should run directly from the root against the shared Biome and Ultracite configuration.
 - Package-scoped execution should use `turbo run ... --filter=...` or `pnpm --filter ...` instead of custom root scripts per package.
 
 ## Alternatives Considered
@@ -24,6 +24,6 @@ Use:
 ## Consequences
 
 - The repo gets a conventional workspace model with explicit package boundaries.
-- Local and CI entry points stay consistent: Turborepo handles package-aware tasks, while root quality commands remain simple and repo-wide.
+- Local and CI entry points stay consistent: Turborepo handles package-aware tasks, while root quality commands remain simple, repo-wide, and aligned with the underlying tool names.
 - Package tasks can be cached, filtered, and parallelized as more apps and internal packages are added.
 - The workspace baseline stays compatible with adding focused internal packages later without reworking command structure.
