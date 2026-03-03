@@ -3,10 +3,10 @@
 ## Epic 1: Project Bootstrap and Monorepo Setup
 
 - Objective: establish the repository, workspace tooling, local runtime, and documentation-linked developer baseline.
-- Included scope: frontend app shell, backend app shell, shared tooling, Dockerized Postgres, base scripts.
+- Included scope: `pnpm` workspaces, Turborepo orchestration, frontend app shell, backend app shell, initial `packages/contracts` package, shared tooling, Dockerized Postgres, base scripts.
 - Excluded scope: product features.
 - Dependencies: none.
-- Acceptance signal: a new contributor can install, run, and understand the repo structure locally.
+- Acceptance signal: a new contributor can install dependencies, run root Turbo commands, and understand the repo structure locally.
 
 ## Epic 2: Authentication and User Isolation
 

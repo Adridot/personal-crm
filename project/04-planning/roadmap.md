@@ -21,7 +21,8 @@ Goal:
 
 Expected outputs:
 
-- workspace tooling
+- `pnpm` + Turborepo workspace tooling
+- initial `packages/contracts` package for shared Zod-based API contracts
 - PostgreSQL + Drizzle setup
 - Better Auth integration
 - translation-ready frontend shell

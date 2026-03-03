@@ -4,11 +4,11 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 
 ## MVP-001: Initialize monorepo workspace
 
-- Objective: create the repository workspace structure for frontend, backend, and shared tooling.
-- Scope: workspace config, package manager choice, root scripts, base ignore rules, developer entry points.
-- Implementation notes: keep the setup conventional and compatible with Codespaces.
+- Objective: create the repository workspace structure for frontend, backend, shared contracts, and shared tooling.
+- Scope: `pnpm` workspace config, Turborepo setup, root scripts, base ignore rules, developer entry points, and an initial `packages/contracts` package skeleton.
+- Implementation notes: keep the setup conventional, use package tasks instead of root task implementations, and keep the shared package focused on Zod contracts rather than backend internals.
 - Dependencies: none.
-- Acceptance criteria: repo installs cleanly and exposes documented root commands for dev, build, and test.
+- Acceptance criteria: repo installs cleanly, exposes documented root Turbo commands for dev, build, lint, test, and includes an initial internal contracts package that both apps can consume later.
 - Estimate: 1 day
 
 ## MVP-002: Add local PostgreSQL and environment baseline

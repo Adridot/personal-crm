@@ -36,6 +36,14 @@ This document records the intended REST surface and API conventions. It is not a
 - Import-triggering endpoints should create or run a job with visible status.
 - The client must be able to retrieve job status and outcomes explicitly.
 
+### Contract Declaration Strategy
+
+- Shared transport contracts should live in `packages/contracts`.
+- Zod schemas should be the source of truth for shared request and response payloads that need validation on both client and server.
+- Frontend code should import inferred types from those schemas instead of re-declaring DTO shapes.
+- Backend code must not expose Drizzle entities or persistence-layer shapes as public API contracts.
+- Keep the contracts package narrow: browser-safe, server-safe, and free of backend-only side effects.
+
 ### Error Format
 
 Errors should follow a stable JSON envelope:
@@ -147,3 +155,4 @@ These are documented to reserve conceptual space, not to approve implementation 
 - List endpoints should return data plus pagination metadata.
 - Detail endpoints should return primary entity plus related data needed by the page.
 - Dashboard endpoint should aggregate reminders, stale contacts, and simple counts instead of requiring multiple waterfall requests.
+- When an endpoint contract is stabilized, its payload schema should be exported from `packages/contracts` instead of duplicated in app-local types.
