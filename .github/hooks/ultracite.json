@@ -3,7 +3,7 @@
     "PostToolUse": [
       {
         "type": "command",
-        "command": "pnpm dlx ultracite fix"
+        "command": "pnpm exec ultracite fix"
       }
     ]
   }
