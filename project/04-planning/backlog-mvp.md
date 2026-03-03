@@ -6,13 +6,13 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 
 - Objective: create the repository workspace structure for frontend, backend, shared contracts, and shared tooling.
 - Scope: `pnpm` workspace config, Turborepo setup with a defined `turbo.json` pipeline for package-oriented tasks, root developer scripts, Biome + Ultracite config at the root, base ignore rules, and workspace-aware entry points. Includes an empty `packages/contracts` placeholder (name and package manifest only) so the workspace graph is complete without forcing schema design too early.
-- Implementation notes: keep the setup conventional; use package-level task definitions, not root-level task implementations; package-oriented root commands should delegate to `turbo run`, while repo-wide formatting and autofix commands may call their tools directly; do not add Zod schemas or shared transport types to `packages/contracts` at this stage.
+- Implementation notes: keep the setup conventional; use package-level task definitions, not root-level task implementations; package-oriented root commands should delegate to `turbo run`, while repo-wide `check`, `fix`, and `format` commands may call their tools directly; do not add Zod schemas or shared transport types to `packages/contracts` at this stage.
 - Dependencies: none.
 - Acceptance criteria:
   - `pnpm install` completes without errors or unresolved peer dependencies.
   - `turbo run build --dry` lists `apps/web`, `apps/api`, and `packages/contracts` as workspace packages.
-  - Root scripts expose `dev`, `build`, `lint`, `test`, `typecheck`, `lint:fix`, and `format`.
-  - `biome check .` passes with no errors at the root.
+  - Root scripts expose `dev`, `build`, `lint`, `check`, `fix`, `test`, `typecheck`, and `format`.
+  - `pnpm check` passes with no errors at the root.
   - `apps/`, `packages/contracts/`, and `project/` directories exist and match the approved monorepo layout.
   - Root `README` documents available Turbo commands.
 - Estimate: 1 day
