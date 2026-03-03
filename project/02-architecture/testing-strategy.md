@@ -60,6 +60,6 @@ The following areas need higher confidence than aesthetic UI details:
 For an MVP-critical ticket, "done" should normally mean:
 
 - implementation completed,
-- unit or integration coverage added where behavior is non-trivial,
+- unit or integration coverage added for all new or modified business logic,
 - no cross-user access regression introduced,
 - relevant docs or backlog notes updated if behavior changed.

@@ -99,10 +99,17 @@ All user-owned tables should include `user_id` and must be queried with ownershi
   - `contact_id_2`
   - `relation_type`
   - `notes`
+- Integrity rules:
+  - store each relationship pair in canonical order so `contact_id_1 < contact_id_2`
+  - add a database `CHECK` constraint enforcing `contact_id_1 < contact_id_2`
+  - add a database `UNIQUE` constraint on `(user_id, contact_id_1, contact_id_2)`
+  - reject self-links by ensuring the two contact IDs are different
 - Relationships:
   - links two contact records
 - Version note:
   - required in MVP
+- Implementation note:
+  - the application must sort the two contact IDs before insertion and before duplicate checks
 
 ### `interactions`
 

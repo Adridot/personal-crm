@@ -92,6 +92,8 @@ Note: actual path details may align with Better Auth conventions during implemen
 
 - `POST /api/contacts/:id/relationships`
 - `DELETE /api/relationships/:id`
+- relationship creation must normalize the two contact IDs into canonical order before persistence
+- duplicate relationship attempts for the same normalized pair should return a conflict-style error rather than creating a second row
 
 ### Interactions
 
