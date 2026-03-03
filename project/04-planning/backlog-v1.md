@@ -127,3 +127,12 @@ This backlog is still issue-ready, but it is intentionally sequenced after MVP s
 - Dependencies: MVP stabilization.
 - Acceptance criteria: documented public API surface proposal exists.
 - Estimate: 1 day
+
+## V1-015: Add centralized brand configuration module
+
+- Objective: separate stable technical identity from user-visible product branding.
+- Scope: dedicated brand config module, frontend metadata wiring, naming conventions for future backend email and notification usage.
+- Implementation notes: keep `personal-crm` as the stable internal identifier; centralize product name, short name, description, and public URL without turning every branding value into environment-driven runtime config.
+- Dependencies: MVP frontend shell stabilization.
+- Acceptance criteria: user-visible product naming is sourced from one typed module instead of being scattered across the application.
+- Estimate: 1 day
