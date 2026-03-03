@@ -13,6 +13,7 @@ It exists to do four things:
 
 - Planning: complete enough to start repository bootstrap work.
 - Architecture: baseline approved.
+- Workspace baseline: `pnpm` workspaces + `Turborepo`, with a focused internal contracts package strategy.
 - Implementation: not started.
 - Documentation language: English, except for archival transcript content.
 

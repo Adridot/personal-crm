@@ -3,8 +3,10 @@
 ## Approved Technical Baseline
 
 - Repository model: monorepo.
+- Workspace tooling: `pnpm` workspaces + Turborepo.
 - Frontend: React + Vite + shadcn/ui + TanStack Query.
 - Backend: NestJS + Drizzle ORM + PostgreSQL + Better Auth.
+- Shared contract strategy: a focused internal package will hold shared Zod schemas and inferred TypeScript types for transport-level contracts.
 - API style: REST-first.
 - Data isolation: one PostgreSQL database with logical per-user isolation via `user_id`.
 - Reminder model: internal reminder system first.
@@ -19,6 +21,8 @@
 - Avoid early infrastructure complexity.
 - Preserve room for future integrations without hard-coding them into MVP.
 - Prefer explicit data ownership checks to hidden magic.
+- Prefer purpose-specific internal packages over a broad `shared` bucket.
+- Share transport contracts, not ORM models or backend-only business logic.
 
 ## Monorepo Shape
 
@@ -26,11 +30,28 @@ The monorepo should eventually support at least:
 
 - a frontend application,
 - a backend API,
-- shared types or utilities where useful,
+- a focused internal package for shared transport contracts,
 - infrastructure or tooling configuration,
 - and documentation under `project/`.
 
-Exact workspace tooling is an implementation detail, but the documentation assumes a unified repository lifecycle.
+The approved initial layout is:
+
+- `apps/web`
+- `apps/api`
+- `packages/contracts`
+- `project/`
+
+The approved workspace baseline is `pnpm` for dependency management and Turborepo for task orchestration.
+
+## Shared Contract Boundary
+
+The first internal package should have one purpose: define shared API contracts.
+
+- `packages/contracts` should own Zod schemas for shared request and response payloads.
+- Frontend and backend should consume inferred TypeScript types from those Zod schemas.
+- The contracts package must stay safe to import in both browser and server contexts.
+- Drizzle table definitions, persistence models, Nest service internals, and auth implementation details must not be exported from `packages/contracts`.
+- Additional internal packages should be created only when they have a distinct responsibility, for example config, UI, or generated clients.
 
 ## Backend Domain Modules
 

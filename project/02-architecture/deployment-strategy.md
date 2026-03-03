@@ -36,6 +36,8 @@ GitHub Actions should eventually cover:
 - build,
 - and migration checks.
 
+The preferred execution model is root-level commands delegated through Turborepo so CI and local development use the same entry points.
+
 ## Database Migrations
 
 - Use Drizzle migrations.
