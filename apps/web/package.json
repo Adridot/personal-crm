@@ -2,11 +2,39 @@
   "name": "@personal-crm/web",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "node -e \"console.log('TODO: bootstrap @personal-crm/web in MVP-004')\"",
-    "build": "node -e \"console.log('TODO: build @personal-crm/web in MVP-004')\"",
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "vite build",
     "lint": "pnpm exec ultracite check .",
+    "preview": "vite preview",
     "test": "node -e \"console.log('TODO: add tests for @personal-crm/web')\"",
-    "typecheck": "tsc --noEmit -p tsconfig.json"
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.2.0",
+    "@tanstack/react-query": "^5.90.21",
+    "@tanstack/react-query-devtools": "^5.91.3",
+    "@tanstack/react-router": "^1.163.3",
+    "@tanstack/react-router-devtools": "^1.163.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.576.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "@tanstack/router-plugin": "^1.164.0",
+    "@types/node": "^25.3.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "shadcn": "^3.8.5",
+    "tailwindcss": "^4.2.1",
+    "tw-animate-css": "^1.4.0",
+    "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^6.1.1"
   }
 }
