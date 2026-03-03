@@ -36,8 +36,4 @@ Project planning and architecture documentation live in [project/README.md](proj
 5. Reset the local database volume:
    - `pnpm db:reset`
 
-The local database runs PostgreSQL 18 through Docker Compose.
-
-`POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`, and `POSTGRES_PORT` are the source of truth in the root `.env` file.
-
-Add `DATABASE_URL` only when the application runtime is wired, and keep it derived from those PostgreSQL variables rather than maintaining a second independent set of credentials.
+The local database runs PostgreSQL 18 through Docker Compose and expects `DATABASE_URL` in the root `.env` file.
