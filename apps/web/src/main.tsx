@@ -10,12 +10,16 @@ import "./index.css";
 
 const rootElement = document.getElementById("app");
 
-if (rootElement instanceof HTMLElement) {
-  ReactDOM.createRoot(rootElement).render(
-    <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </StrictMode>
+if (!(rootElement instanceof HTMLElement)) {
+  throw new Error(
+    'Failed to initialize the web app: root element "#app" was not found.'
   );
 }
+
+ReactDOM.createRoot(rootElement).render(
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  </StrictMode>
+);
