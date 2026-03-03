@@ -15,6 +15,8 @@ That package should:
 - stay import-safe in both browser and server environments,
 - and remain limited to transport contracts and validation helpers.
 
+It may begin as an empty workspace placeholder during bootstrap and gain real schemas as API contracts become concrete.
+
 It must not export:
 
 - Drizzle table definitions,

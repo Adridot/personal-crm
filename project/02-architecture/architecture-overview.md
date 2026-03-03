@@ -16,7 +16,7 @@
 
 ## Guiding Principles
 
-- Keep implementation simple enough for local Docker and Codespaces development.
+- Keep implementation simple enough for local Docker development and straightforward local onboarding.
 - Optimize for clean domain boundaries before adding integrations.
 - Avoid early infrastructure complexity.
 - Preserve room for future integrations without hard-coding them into MVP.
@@ -52,6 +52,7 @@ The first internal package should have one purpose: define shared API contracts.
 - The contracts package must stay safe to import in both browser and server contexts.
 - Drizzle table definitions, persistence models, Nest service internals, and auth implementation details must not be exported from `packages/contracts`.
 - Additional internal packages should be created only when they have a distinct responsibility, for example config, UI, or generated clients.
+- During workspace bootstrap, `packages/contracts` may exist only as a placeholder package. Real schemas should be added when shared endpoint contracts actually stabilize.
 
 ## Backend Domain Modules
 
