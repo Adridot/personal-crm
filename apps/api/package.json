@@ -1,0 +1,12 @@
+{
+  "name": "@personal-crm/api",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "node -e \"console.log('TODO: bootstrap @personal-crm/api in MVP-003')\"",
+    "build": "node -e \"console.log('TODO: build @personal-crm/api in MVP-003')\"",
+    "lint": "pnpm exec ultracite check .",
+    "test": "node -e \"console.log('TODO: add tests for @personal-crm/api')\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  }
+}
