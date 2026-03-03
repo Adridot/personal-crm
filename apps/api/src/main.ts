@@ -8,15 +8,36 @@ import { AppModule } from "./app.module";
 
 const DEFAULT_API_PORT = 3000;
 const DEFAULT_API_HOST = "0.0.0.0";
+const TRAILING_SLASH_REGEX = /\/$/;
+type CorsOriginCallback = (error: Error | null, allow?: boolean) => void;
+
+const normalizeOrigin = (origin: string): string =>
+  origin.replace(TRAILING_SLASH_REGEX, "");
 
 const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
+  const allowedOrigins =
+    configService.get<string[]>("cors.allowedOrigins") ?? [];
 
   app.setGlobalPrefix("api");
   app.enableCors({
     credentials: true,
-    origin: true,
+    origin: (
+      requestOrigin: string | undefined,
+      callback: CorsOriginCallback
+    ) => {
+      if (!requestOrigin) {
+        callback(null, false);
+        return;
+      }
+
+      const normalizedOrigin = normalizeOrigin(requestOrigin);
+      const isAllowed = allowedOrigins.includes(normalizedOrigin);
+
+      callback(isAllowed ? null : new Error("Not allowed by CORS"), isAllowed);
+    },
+    optionsSuccessStatus: 204,
   });
   app.useGlobalPipes(
     new ValidationPipe({

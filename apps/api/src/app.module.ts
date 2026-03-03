@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
 import { appConfig } from "./config/app.config";
+import { corsConfig } from "./config/cors.config";
 import { apiEnvFilePaths } from "./config/env-file-paths";
 import { HealthModule } from "./health/health.module";
 import { AccountModule } from "./modules/account/account.module";
@@ -22,19 +23,19 @@ import { UsersModule } from "./modules/users/users.module";
       envFilePath: apiEnvFilePaths,
       expandVariables: true,
       isGlobal: true,
-      load: [appConfig],
+      load: [appConfig, corsConfig],
     }),
-    HealthModule,
+    AccountModule,
     AuthModule,
-    UsersModule,
     ContactsModule,
     GroupsModule,
-    TagsModule,
-    RelationshipsModule,
-    InteractionsModule,
-    RemindersModule,
+    HealthModule,
     ImportsModule,
-    AccountModule,
+    InteractionsModule,
+    RelationshipsModule,
+    RemindersModule,
+    TagsModule,
+    UsersModule,
   ],
 })
 export class AppModule {}

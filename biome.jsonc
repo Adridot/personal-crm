@@ -11,6 +11,7 @@
       "linter": {
         "rules": {
           "correctness": {
+            "noGlobalDirnameFilename": "off",
             "useHookAtTopLevel": "off"
           }
         }
