@@ -15,7 +15,11 @@
     "format": "biome format --write .",
     "check": "ultracite check .",
     "test": "turbo run test",
-    "typecheck": "turbo run typecheck"
+    "typecheck": "turbo run typecheck",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down -v",
+    "db:logs": "docker compose logs -f postgres"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.0",
