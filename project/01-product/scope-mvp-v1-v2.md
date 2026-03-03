@@ -57,6 +57,7 @@ The following features were discussed, but they are explicitly not approved for 
 - Google Calendar quick scheduling.
 - Custom fields UI or dynamic schema editing.
 - Google Tasks synchronization.
+- TanStack Start adoption or frontend server-runtime features while NestJS remains the primary backend.
 - Multi-user shared accounts or collaborative workspaces.
 - Board, calendar, and gallery views.
 - Browser extension workflows.

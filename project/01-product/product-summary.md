@@ -18,6 +18,7 @@ It starts with Google Contacts as the only import source, adds structured contac
 
 - Email/password authentication with Better Auth.
 - One account maps to one user.
+- Translation-ready web application shell with dashboard and contacts routes.
 - Google Contacts import via OAuth and Google People API.
 - Import execution tracked as jobs from day one.
 - Contact CRUD with fixed fields only.
@@ -45,6 +46,7 @@ It starts with Google Contacts as the only import source, adds structured contac
 
 - Google Calendar quick scheduling.
 - Google Tasks synchronization.
+- TanStack Start adoption and frontend server-runtime features such as SSR or server functions.
 - Beeper message ingestion.
 - PWA/mobile offline mode.
 - Custom fields UI and schema.

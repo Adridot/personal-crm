@@ -6,7 +6,7 @@
 [User]
   |
   v
-[React Frontend]
+[React Frontend (Vite SPA)]
   |
   v
 [NestJS API]
@@ -67,8 +67,10 @@ External systems connected to the API:
 
 - Session-aware UI.
 - Display dashboard and contact workflows.
-- Handle i18n and client-side routing.
-- Use TanStack Query for API state.
+- Handle i18n and client-side routing through TanStack Router.
+- Use TanStack Query for API state and cache behavior.
+- Use shadcn/ui components configured for Base UI primitives.
+- Stay frontend-only for MVP; TanStack Start server features are intentionally deferred while NestJS remains the backend.
 
 ### NestJS API
 

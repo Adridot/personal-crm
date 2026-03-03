@@ -67,7 +67,7 @@
 ## Epic 9: Frontend i18n and UX Foundation
 
 - Objective: keep the frontend translation-ready and coherent.
-- Included scope: translation plumbing, route shell, shared layout patterns.
+- Included scope: translation plumbing, TanStack Router route shell, TanStack Query provider setup, Base UI-backed shadcn baseline, shared layout patterns.
 - Excluded scope: full localization depth for every future feature.
 - Dependencies: Epic 1.
 - Acceptance signal: all visible MVP UI copy is translation-ready.
