@@ -37,3 +37,12 @@ Project planning and architecture documentation live in [project/README.md](proj
    - `pnpm db:reset`
 
 The local database runs PostgreSQL 18 through Docker Compose and expects `DATABASE_URL` in the root `.env` file.
+
+## API
+
+- Start the API in watch mode:
+  - `pnpm dev:api`
+- Health endpoint:
+  - `http://localhost:3000/api/health`
+
+The API reads environment variables from `apps/api/.env.local` first, then falls back to the root `.env` file.

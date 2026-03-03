@@ -3,10 +3,27 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "node -e \"console.log('TODO: bootstrap @personal-crm/api in MVP-003')\"",
-    "build": "node -e \"console.log('TODO: build @personal-crm/api in MVP-003')\"",
+    "dev": "nest start --watch",
+    "build": "nest build",
     "lint": "pnpm exec ultracite check .",
+    "start": "node dist/main.js",
     "test": "node -e \"console.log('TODO: add tests for @personal-crm/api')\"",
     "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.1.15",
+    "@nestjs/config": "4.0.3",
+    "@nestjs/core": "11.1.15",
+    "@nestjs/platform-express": "11.1.15",
+    "@nestjs/terminus": "11.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "11.0.16",
+    "@types/node": "^25.3.3",
+    "ts-node": "^10.9.2"
   }
 }

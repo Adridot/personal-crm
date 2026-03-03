@@ -4,5 +4,18 @@
     "ultracite/biome/core",
     "ultracite/biome/react",
     "ultracite/biome/nestjs"
+  ],
+  "overrides": [
+    {
+      "includes": ["apps/api/**/*.ts"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noGlobalDirnameFilename": "off",
+            "useHookAtTopLevel": "off"
+          }
+        }
+      }
+    }
   ]
 }
