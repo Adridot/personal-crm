@@ -11,7 +11,7 @@ Use:
 - `pnpm` workspaces for dependency management and local package linking.
 - Turborepo for task orchestration, caching, and package-aware execution.
 
-Root scripts should delegate to `turbo run ...`, while task implementations live in the relevant package scripts.
+Root scripts that orchestrate package tasks should delegate to `turbo run ...`, while task implementations live in the relevant package scripts. Repo-wide formatting and autofix commands may invoke their tools directly from the root when that is simpler and does not benefit from package-level orchestration.
 
 ## Alternatives Considered
 

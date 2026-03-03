@@ -5,7 +5,6 @@
 Start with the simplest environment model that supports development quality:
 
 - local Docker for repeatable setup,
-- GitHub Codespaces compatibility,
 - and a path to simple hosted deployment later.
 
 ## Environment Model
@@ -15,11 +14,6 @@ Start with the simplest environment model that supports development quality:
 - PostgreSQL via Docker.
 - Frontend and backend run in local dev mode.
 - Environment variables managed through local `.env` conventions.
-
-### Codespaces
-
-- Repository should remain compatible with cloud development environments.
-- Setup should not assume a complex local-only machine configuration.
 
 ### Staging / Production Later
 
@@ -32,11 +26,12 @@ GitHub Actions should eventually cover:
 
 - install,
 - lint,
+- typecheck,
 - test,
 - build,
 - and migration checks.
 
-The preferred execution model is root-level commands delegated through Turborepo so CI and local development use the same entry points.
+Package-oriented commands such as `dev`, `build`, `lint`, `test`, and `typecheck` should delegate through Turborepo so CI and local development use the same entry points. Repo-wide formatting or fix commands may still invoke their tools directly at the root.
 
 ## Database Migrations
 

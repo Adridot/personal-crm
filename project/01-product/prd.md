@@ -89,6 +89,7 @@ People maintain meaningful relationships across fragmented systems such as Googl
 
 ### Deployment Simplicity
 
-- Local Docker and GitHub Codespaces should be first-class development targets.
+- Local Docker should be the first-class development target.
+- Cloud development compatibility is optional and must not drive MVP bootstrap decisions.
 - Avoid over-engineered infrastructure in the first release.
 - Keep the architecture deployable on a simple PaaS later.
