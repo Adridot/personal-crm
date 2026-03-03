@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import type { PropsWithChildren } from "react";
 
-import { shellCopy } from "@/copy/shell-copy";
+import { shellText } from "@/copy/shell-text";
 import { cn } from "@/lib/utils";
 
 export const AppShell = ({ children }: PropsWithChildren) => {
@@ -16,17 +16,17 @@ export const AppShell = ({ children }: PropsWithChildren) => {
           <div className="sticky top-6 space-y-6 rounded-2xl border bg-card p-5 shadow-sm">
             <div className="space-y-2">
               <p className="font-medium text-muted-foreground text-sm">
-                {shellCopy.appShell.productName}
+                {shellText.appShell.productName}
               </p>
               <h1 className="font-semibold text-xl tracking-tight">
-                {shellCopy.appShell.title}
+                {shellText.appShell.title}
               </h1>
               <p className="text-muted-foreground text-sm">
-                {shellCopy.appShell.description}
+                {shellText.appShell.description}
               </p>
             </div>
             <nav aria-label="Primary" className="grid gap-2">
-              {shellCopy.appShell.navigation.map((item) => {
+              {shellText.appShell.navigation.map((item) => {
                 const isActive = pathname.startsWith(item.to);
 
                 return (

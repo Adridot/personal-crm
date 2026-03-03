@@ -1,4 +1,4 @@
-export const shellCopy = {
+export const shellText = {
   appShell: {
     productName: "personal-crm",
     title: "Relationship workspace",
