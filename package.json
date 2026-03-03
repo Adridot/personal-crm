@@ -1,0 +1,25 @@
+{
+  "name": "personal-crm",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.29.3",
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@personal-crm/web",
+    "dev:api": "turbo run dev --filter=@personal-crm/api",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "lint:fix": "ultracite fix",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "check": "ultracite check"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.0",
+    "turbo": "^2.8.12",
+    "typescript": "^5.9.3",
+    "ultracite": "7.2.4"
+  }
+}
