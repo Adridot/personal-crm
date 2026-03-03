@@ -11,12 +11,10 @@
     "dev:api": "turbo run dev --filter=@personal-crm/api",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "lint:fix": "pnpm exec ultracite fix",
-    "format": "pnpm exec biome format --write .",
+    "lint:fix": "ultracite fix",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
-    "check": "ultracite check",
-    "fix": "ultracite fix"
+    "check": "ultracite check"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.0",
