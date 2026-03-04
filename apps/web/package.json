@@ -9,20 +9,21 @@
     "lint": "pnpm exec ultracite check .",
     "preview": "vite preview",
     "test": "node -e \"console.log('TODO: add tests for @personal-crm/web')\"",
-    "typecheck": "tsc -b"
+    "typecheck": "pnpm exec intlayer build && tsc -b"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
     "@tanstack/react-query": "^5.90.21",
-    "@tanstack/react-query-devtools": "^5.91.3",
     "@tanstack/react-router": "^1.163.3",
-    "@tanstack/react-router-devtools": "^1.163.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "intlayer": "^8.1.11",
     "lucide-react": "^0.576.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "tailwind-merge": "^3.5.0"
+    "react-intlayer": "^8.1.11",
+    "tailwind-merge": "^3.5.0",
+    "vite-intlayer": "^8.1.11"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.1",

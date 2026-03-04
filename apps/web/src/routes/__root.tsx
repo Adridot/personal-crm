@@ -1,7 +1,12 @@
 import type { QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import {
+  createRootRouteWithContext,
+  Outlet,
+  useMatches,
+} from "@tanstack/react-router";
+import { defaultLocale, getHTMLTextDir } from "intlayer";
+import { useEffect } from "react";
+import { IntlayerProvider } from "react-intlayer";
 
 import { AppShell } from "@/components/app-shell";
 
@@ -14,20 +19,25 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 });
 
 function RootRouteComponent() {
+  const matches = useMatches();
+  const localeRoute = matches.find((match) => match.routeId === "/{-$locale}");
+  const locale = localeRoute?.params?.locale ?? defaultLocale;
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    document.documentElement.dir = getHTMLTextDir(locale);
+  }, [locale]);
+
   return (
-    <>
+    <IntlayerProvider
+      defaultLocale={defaultLocale}
+      disableEditor
+      isCookieEnabled
+      locale={locale}
+    >
       <AppShell>
         <Outlet />
       </AppShell>
-      {import.meta.env.DEV ? (
-        <>
-          <TanStackRouterDevtools position="bottom-right" />
-          <ReactQueryDevtools
-            buttonPosition="bottom-left"
-            initialIsOpen={false}
-          />
-        </>
-      ) : null}
-    </>
+    </IntlayerProvider>
   );
 }

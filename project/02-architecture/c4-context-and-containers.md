@@ -67,9 +67,11 @@ External systems connected to the API:
 
 - Session-aware UI.
 - Display dashboard and contact workflows.
-- Handle i18n and client-side routing through TanStack Router.
+- Handle i18n through Intlayer and client-side routing through TanStack Router.
 - Use TanStack Query for API state and cache behavior.
 - Use shadcn/ui components configured for Base UI primitives.
+- Use `intlayerProxy()` for proxy-backed locale detection and locale-aware redirects in the Vite frontend.
+- Keep locale URLs on the `prefix-no-default` strategy with English as the default locale.
 - Stay frontend-only for MVP; TanStack Start server features are intentionally deferred while NestJS remains the backend.
 
 ### NestJS API
