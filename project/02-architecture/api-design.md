@@ -14,8 +14,12 @@ This document records the intended REST surface and API conventions. It is not a
 ### Authentication
 
 - Better Auth handles session lifecycle.
+- Better Auth is integrated in Nest through `@thallesp/nestjs-better-auth`.
+- `apps/api` remains on the standard NestJS CommonJS runtime for the current Better Auth compatibility line.
 - Protected routes require an authenticated session.
+- Nest runs with a global auth guard by default.
 - Ownership is enforced through the resolved user identity.
+- Public endpoints must be explicitly marked anonymous.
 
 ### Pagination
 
@@ -67,12 +71,17 @@ Errors should follow a stable JSON envelope:
 
 ### Auth
 
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `POST /api/auth/logout`
-- `GET /api/auth/session`
+- `POST /api/auth/sign-up/email`
+- `POST /api/auth/sign-in/email`
+- `POST /api/auth/sign-out`
+- `GET /api/auth/get-session`
+- `GET /api/account/me`
 
-Note: actual path details may align with Better Auth conventions during implementation.
+Notes:
+
+- Better Auth keeps its native auth endpoints at `/api/auth/*`.
+- `GET /api/account/me` is the app-owned authenticated session endpoint used by the frontend shell and route guards.
+- The frontend talks to these endpoints through same-origin `/api` requests, proxied to NestJS in development.
 
 ### Contacts
 

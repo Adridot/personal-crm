@@ -70,19 +70,19 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 ## MVP-007: Integrate Better Auth
 
 - Objective: support account registration, login, logout, and session retrieval.
-- Scope: Better Auth wiring, backend adapter integration, frontend auth bootstrapping.
-- Implementation notes: follow secure defaults.
+- Scope: Better Auth wiring, community Nest integration, global auth guard, frontend auth client, localized sign-in and sign-up pages, same-origin auth transport, `GET /api/account/me`, and initial protection of dashboard and contacts.
+- Implementation notes: keep Better Auth native endpoints at `/api/auth/*`, use cookie-backed sessions, preserve same-origin frontend transport through `/api`, and keep the current compatibility pin on Better Auth until the community Nest package is updated.
 - Dependencies: MVP-003, MVP-004, MVP-006.
-- Acceptance criteria: a user can register, log in, and maintain a valid session.
+- Acceptance criteria: a user can register with name, email, and password, is automatically signed in after signup, can log in and out, can retrieve the current session through `/api/account/me`, and cannot access dashboard or contacts anonymously.
 - Estimate: 2 days
 
 ## MVP-008: Enforce authenticated route protection
 
-- Objective: prevent anonymous access to protected resources.
-- Scope: backend guards or middleware, frontend route gating, session checks.
-- Implementation notes: keep auth failures consistent.
+- Objective: extend the established auth protection baseline consistently across future feature routes.
+- Scope: public route annotations, protection patterns for new backend controllers and new frontend feature routes, and regression coverage for anonymous access.
+- Implementation notes: build on the global-guard and protected-layout foundation from MVP-007 instead of introducing a second auth layer.
 - Dependencies: MVP-007.
-- Acceptance criteria: protected routes are inaccessible without a valid session.
+- Acceptance criteria: newly added protected routes and endpoints are inaccessible without a valid session, while intentionally public endpoints remain explicitly anonymous.
 - Estimate: 1 day
 
 ## MVP-009: Implement user ownership enforcement pattern

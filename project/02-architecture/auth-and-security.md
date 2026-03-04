@@ -3,13 +3,20 @@
 ## Approved Baseline
 
 - Authentication provider: Better Auth.
+- Nest integration baseline: `@thallesp/nestjs-better-auth`.
 - Account model: one account equals one user.
-- Session model: secure cookie or token-backed session managed through Better Auth.
+- Session model: Better Auth cookie-backed sessions for MVP, not bearer tokens.
 - Core auth schema baseline: Better Auth default tables `user`, `session`, `account`, and `verification`.
 - Auth user identifier baseline: text/string id from Better Auth defaults, not UUID.
-- Authorization rule: every user-owned record must be scoped by authenticated ownership.
+- Authorization baseline: global auth guard enabled in Nest, with explicit anonymous annotations for public endpoints.
+- Frontend auth transport: same-origin via the frontend `/api` path, backed by the Vite proxy in development and a reverse proxy in deployed environments.
 
 ## Security Decisions
+
+### Runtime Compatibility
+
+- `apps/api` remains on the standard Nest CommonJS runtime for now.
+- The current Nest community integration is pinned to a Better Auth-compatible version line until upstream compatibility catches up.
 
 ### Password Handling
 
@@ -21,6 +28,8 @@
 - Use secure session storage and transport.
 - Prefer HTTP-only cookies where appropriate.
 - Ensure session invalidation works on logout.
+- Keep Better Auth native endpoints mounted at `/api/auth/*`.
+- Expose `GET /api/account/me` as the app-owned authenticated session summary endpoint.
 
 ### OAuth Token Handling
 
@@ -36,6 +45,7 @@ Google import requires OAuth access. Provider tokens must be treated as sensitiv
 - All domain queries must enforce `user_id` ownership.
 - Service and controller layers must not trust client-submitted ownership fields.
 - Domain `user_id` foreign keys must align with the Better Auth `user.id` string/text type.
+- Public routes such as `health` must be explicitly annotated as anonymous under the global guard model.
 - Future row-level security may be evaluated, but application-level filtering is the approved baseline.
 
 ### GDPR and Data Control

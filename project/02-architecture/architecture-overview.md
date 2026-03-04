@@ -6,6 +6,7 @@
 - Workspace tooling: `pnpm` workspaces + Turborepo.
 - Frontend: React + Vite + TanStack Router + TanStack Query + Intlayer + shadcn/ui on Base UI.
 - Backend: NestJS + Drizzle ORM + PostgreSQL + Better Auth.
+- API runtime baseline: standard NestJS CommonJS in `apps/api`, with Better Auth pinned to the current community-integration-compatible version line.
 - Shared contract strategy: a focused internal package will hold shared Zod schemas and inferred TypeScript types for transport-level contracts.
 - API style: REST-first.
 - Data isolation: one PostgreSQL database with logical per-user isolation via `user_id`.
@@ -80,6 +81,7 @@ Deferred modules that should not block MVP:
 
 The frontend is a single-page application with:
 
+- dedicated localized auth pages,
 - authenticated routes,
 - translation-ready copy,
 - dashboard and contacts views as first-class pages,
@@ -88,6 +90,12 @@ The frontend is a single-page application with:
 - Intlayer for frontend internationalization,
 - UI primitives based on shadcn/ui configured for Base UI,
 - and a Vite development server proxying `/api` calls to the NestJS backend.
+
+The auth transport baseline is same-origin:
+
+- Better Auth client requests stay on the frontend origin,
+- Vite proxies `/api` to NestJS in development,
+- and production should preserve the same-origin appearance through a reverse proxy rather than exposing a separate public auth origin.
 
 TanStack Start was evaluated for the frontend, but it is intentionally deferred while NestJS remains the primary backend runtime. The additional full-stack features in TanStack Start are not needed for the MVP shell and would overlap with responsibilities already assigned to NestJS.
 

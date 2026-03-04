@@ -10,7 +10,7 @@ Use:
 
 - NestJS for the backend,
 - Drizzle ORM with PostgreSQL for persistence,
-- Better Auth for authentication,
+- Better Auth for authentication, integrated in NestJS through the selected community package,
 - React + Vite for the frontend,
 - TanStack Router for frontend routing,
 - TanStack Query for frontend data fetching and cache management,
@@ -36,6 +36,7 @@ Use:
 
 - Strong TypeScript consistency across the stack.
 - Conventional relational data model and migrations.
+- A temporary Better Auth compatibility pin in `apps/api` while the community Nest integration catches up with the latest Better Auth runtime line.
 - Slightly more implementation work than choosing a backend platform product, but higher architectural control.
 - A clear path to sharing validated API contracts without coupling frontend code to persistence models.
 - A route-aware frontend architecture aligned with the wider TanStack family without forcing a full-stack framework pivot.
