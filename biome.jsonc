@@ -16,6 +16,15 @@
           }
         }
       }
+    },
+    {
+      "includes": ["apps/api/drizzle/meta/**/*.json"],
+      "formatter": {
+        "enabled": false
+      },
+      "linter": {
+        "enabled": false
+      }
     }
   ]
 }

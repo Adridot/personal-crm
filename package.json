@@ -19,7 +19,11 @@
     "db:up": "docker compose up -d postgres",
     "db:down": "docker compose down",
     "db:reset": "docker compose down -v",
-    "db:logs": "docker compose logs -f postgres"
+    "db:logs": "docker compose logs -f postgres",
+    "db:auth:generate": "pnpm --filter @personal-crm/api db:auth:generate",
+    "db:generate": "pnpm --filter @personal-crm/api db:generate",
+    "db:migrate": "pnpm --filter @personal-crm/api db:migrate",
+    "db:studio": "pnpm --filter @personal-crm/api db:studio"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.0",

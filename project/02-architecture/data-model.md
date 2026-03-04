@@ -4,24 +4,82 @@ This document captures the canonical domain entities for the approved planning b
 
 ## Ownership Rule
 
-All user-owned tables should include `user_id` and must be queried with ownership filters. The `users` table itself does not need `user_id`.
+The authentication baseline uses Better Auth core tables with default naming. The auth `user` table itself does not include `user_id`.
+
+All user-owned domain tables should include `user_id` and must be queried with ownership filters. Those foreign keys must reference the Better Auth `user.id` column using a compatible text/string type.
 
 ## Entities
 
-### `users`
+### `user`
 
-- Purpose: account identity and primary user preferences.
+- Purpose: Better Auth core account identity table.
 - Key columns:
   - `id`
   - `email`
-  - `password_hash` or Better Auth-managed equivalent
-  - `locale`
+  - `name`
+  - `email_verified`
+  - `image`
   - `created_at`
   - `updated_at`
 - Relationships:
-  - owns contacts, tags, relationships, interactions, reminders, imports, and future domain records
+  - referenced by `session`
+  - referenced by `account`
 - Version note:
-  - required in MVP
+  - generated in MVP through Better Auth + Drizzle
+
+### `session`
+
+- Purpose: Better Auth core session storage.
+- Key columns:
+  - `id`
+  - `expires_at`
+  - `token`
+  - `ip_address` nullable
+  - `user_agent` nullable
+  - `user_id`
+  - `created_at`
+  - `updated_at`
+- Relationships:
+  - belongs to `user`
+- Version note:
+  - generated in MVP through Better Auth + Drizzle
+
+### `account`
+
+- Purpose: Better Auth core provider and credential account storage.
+- Key columns:
+  - `id`
+  - `account_id`
+  - `provider_id`
+  - `user_id`
+  - `access_token` nullable
+  - `refresh_token` nullable
+  - `id_token` nullable
+  - `access_token_expires_at` nullable
+  - `refresh_token_expires_at` nullable
+  - `scope` nullable
+  - `password` nullable
+  - `created_at`
+  - `updated_at`
+- Relationships:
+  - belongs to `user`
+- Version note:
+  - generated in MVP through Better Auth + Drizzle
+
+### `verification`
+
+- Purpose: Better Auth verification token storage for flows such as email verification and password reset.
+- Key columns:
+  - `id`
+  - `identifier`
+  - `value`
+  - `expires_at`
+  - `created_at`
+  - `updated_at`
+- Relationships:
+  - standalone auth support table
+- Version note:
+  - generated in MVP through Better Auth + Drizzle
 
 ### `contacts`
 
