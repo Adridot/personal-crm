@@ -15,7 +15,9 @@ const normalizeOrigin = (origin: string): string =>
   origin.replace(TRAILING_SLASH_REGEX, "");
 
 const bootstrap = async (): Promise<void> => {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    bodyParser: false,
+  });
   app.enableShutdownHooks();
 
   const configService = app.get(ConfigService);

@@ -5,6 +5,7 @@ import { getRequiredEnv } from "../config/get-required-env";
 import { loadApiEnvironment } from "../config/load-env";
 import { normalizeOrigin, resolveAllowedOrigins } from "../config/origins";
 import { dbClient } from "../db/client";
+import { account, session, user, verification } from "../db/schema/index";
 
 loadApiEnvironment();
 
@@ -20,11 +21,13 @@ const trustedOrigins = Array.from(
     ),
   ])
 );
+const authSchema = { account, session, user, verification };
 
 export const auth = betterAuth({
   baseURL,
   database: drizzleAdapter(dbClient, {
     provider: "pg",
+    schema: authSchema,
   }),
   emailAndPassword: {
     enabled: true,
