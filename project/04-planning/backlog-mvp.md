@@ -47,10 +47,15 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 ## MVP-005: Add frontend i18n foundation
 
 - Objective: make all future UI strings translation-ready.
-- Scope: translation provider, locale files, shared translation helpers, initial English and French scaffolding.
-- Implementation notes: translate shell pages and auth screens first.
+- Scope: Intlayer provider wiring, `apps/web/intlayer.config.ts`, locale-aware routing helpers, colocated `.content.ts` dictionaries, initial English and French scaffolding, and a visible locale switcher in the shell.
+- Implementation notes: use Intlayer with `prefix-no-default`, English as the default locale, and cookie + localStorage persistence; rely on `intlayerProxy()` for proxy-backed locale detection; keep canonical English route slugs; translate the shell pages first; keep the editor, CMS, AI, compiler extraction, and custom localized rewrites out of scope.
 - Dependencies: MVP-004.
-- Acceptance criteria: visible shell strings resolve through the translation layer.
+- Acceptance criteria:
+  - visible shell strings resolve through Intlayer,
+  - `/dashboard` and `/contacts` render English,
+  - `/fr/dashboard` and `/fr/contacts` render French,
+  - `/` resolves to the locale-appropriate dashboard route,
+  - and locale choice persists through cookie + localStorage.
 - Estimate: 1 day
 
 ## MVP-006: Add Drizzle schema and migration baseline

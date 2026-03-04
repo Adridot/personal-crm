@@ -1,13 +1,22 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { useRouterState } from "@tanstack/react-router";
+import { getPathWithoutLocale } from "intlayer";
 import type { PropsWithChildren } from "react";
+import { useIntlayer } from "react-intlayer";
 
-import { shellText } from "@/copy/shell-text";
+import { LocaleSwitcher } from "@/i18n/locale-switcher";
+import { LocalizedLink } from "@/i18n/localized-link";
 import { cn } from "@/lib/utils";
 
 export const AppShell = ({ children }: PropsWithChildren) => {
+  const content = useIntlayer("app-shell");
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   });
+  const pathWithoutLocale = getPathWithoutLocale(pathname);
+  const navigationItems = [
+    { label: content.dashboardLabel, to: "/dashboard" },
+    { label: content.contactsLabel, to: "/contacts" },
+  ] as const;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -16,21 +25,21 @@ export const AppShell = ({ children }: PropsWithChildren) => {
           <div className="sticky top-6 space-y-6 rounded-2xl border bg-card p-5 shadow-sm">
             <div className="space-y-2">
               <p className="font-medium text-muted-foreground text-sm">
-                {shellText.appShell.productName}
+                {content.productName}
               </p>
               <h1 className="font-semibold text-xl tracking-tight">
-                {shellText.appShell.title}
+                {content.title}
               </h1>
               <p className="text-muted-foreground text-sm">
-                {shellText.appShell.description}
+                {content.description}
               </p>
             </div>
             <nav aria-label="Primary" className="grid gap-2">
-              {shellText.appShell.navigation.map((item) => {
-                const isActive = pathname.startsWith(item.to);
+              {navigationItems.map((item) => {
+                const isActive = pathWithoutLocale.startsWith(item.to);
 
                 return (
-                  <Link
+                  <LocalizedLink
                     className={cn(
                       "rounded-xl px-3 py-2 font-medium text-sm transition-colors",
                       isActive
@@ -41,10 +50,11 @@ export const AppShell = ({ children }: PropsWithChildren) => {
                     to={item.to}
                   >
                     {item.label}
-                  </Link>
+                  </LocalizedLink>
                 );
               })}
             </nav>
+            <LocaleSwitcher label={content.localeSwitcherLabel.value} />
           </div>
         </aside>
         <main className="min-w-0 flex-1 rounded-3xl border bg-card/60 p-5 shadow-sm sm:p-6">

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useIntlayer } from "react-intlayer";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -8,29 +9,36 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { shellText } from "@/copy/shell-text";
 
-export const Route = createFileRoute("/contacts")({
+export const Route = createFileRoute("/{-$locale}/contacts")({
   component: ContactsRouteComponent,
 });
 
+const CONTACT_PLACEHOLDER_IDS = [
+  "alex-johnson",
+  "camille-martin",
+  "noah-kim",
+] as const;
+
 function ContactsRouteComponent() {
+  const content = useIntlayer("contacts-page");
+
   return (
     <section className="space-y-6">
       <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-2">
           <h1 className="font-semibold text-3xl tracking-tight">
-            {shellText.contacts.title}
+            {content.title}
           </h1>
           <p className="max-w-2xl text-muted-foreground text-sm sm:text-base">
-            {shellText.contacts.description}
+            {content.description}
           </p>
         </div>
-        <Button type="button">{shellText.contacts.primaryAction}</Button>
+        <Button type="button">{content.primaryAction}</Button>
       </header>
       <div className="grid gap-4">
-        {shellText.contacts.placeholders.map((placeholder) => (
-          <Card key={placeholder.name}>
+        {content.placeholders.map((placeholder, index) => (
+          <Card key={CONTACT_PLACEHOLDER_IDS[index]}>
             <CardHeader>
               <CardTitle>{placeholder.name}</CardTitle>
               <CardDescription>{placeholder.meta}</CardDescription>

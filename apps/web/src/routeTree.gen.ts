@@ -9,86 +9,128 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as ContactsRouteImport } from './routes/contacts'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
+import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
+import { Route as Char123LocaleChar125DashboardRouteImport } from './routes/{-$locale}/dashboard'
+import { Route as Char123LocaleChar125ContactsRouteImport } from './routes/{-$locale}/contacts'
 
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactsRoute = ContactsRouteImport.update({
-  id: '/contacts',
-  path: '/contacts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const Char123LocaleChar125RouteRoute =
+  Char123LocaleChar125RouteRouteImport.update({
+    id: '/{-$locale}',
+    path: '/{-$locale}',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char123LocaleChar125IndexRoute =
+  Char123LocaleChar125IndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125DashboardRoute =
+  Char123LocaleChar125DashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125ContactsRoute =
+  Char123LocaleChar125ContactsRouteImport.update({
+    id: '/contacts',
+    path: '/contacts',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/contacts': typeof ContactsRoute
-  '/dashboard': typeof DashboardRoute
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
+  '/{-$locale}/contacts': typeof Char123LocaleChar125ContactsRoute
+  '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRoute
+  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/contacts': typeof ContactsRoute
-  '/dashboard': typeof DashboardRoute
+  '/{-$locale}/contacts': typeof Char123LocaleChar125ContactsRoute
+  '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRoute
+  '/{-$locale}': typeof Char123LocaleChar125IndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/contacts': typeof ContactsRoute
-  '/dashboard': typeof DashboardRoute
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
+  '/{-$locale}/contacts': typeof Char123LocaleChar125ContactsRoute
+  '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRoute
+  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contacts' | '/dashboard'
+  fullPaths:
+    | '/{-$locale}'
+    | '/{-$locale}/contacts'
+    | '/{-$locale}/dashboard'
+    | '/{-$locale}/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contacts' | '/dashboard'
-  id: '__root__' | '/' | '/contacts' | '/dashboard'
+  to: '/{-$locale}/contacts' | '/{-$locale}/dashboard' | '/{-$locale}'
+  id:
+    | '__root__'
+    | '/{-$locale}'
+    | '/{-$locale}/contacts'
+    | '/{-$locale}/dashboard'
+    | '/{-$locale}/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ContactsRoute: typeof ContactsRoute
-  DashboardRoute: typeof DashboardRoute
+  Char123LocaleChar125RouteRoute: typeof Char123LocaleChar125RouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
+    '/{-$locale}': {
+      id: '/{-$locale}'
+      path: '/{-$locale}'
+      fullPath: '/{-$locale}'
+      preLoaderRoute: typeof Char123LocaleChar125RouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contacts': {
-      id: '/contacts'
-      path: '/contacts'
-      fullPath: '/contacts'
-      preLoaderRoute: typeof ContactsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
+    '/{-$locale}/': {
+      id: '/{-$locale}/'
       path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/{-$locale}/'
+      preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/dashboard': {
+      id: '/{-$locale}/dashboard'
+      path: '/dashboard'
+      fullPath: '/{-$locale}/dashboard'
+      preLoaderRoute: typeof Char123LocaleChar125DashboardRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/contacts': {
+      id: '/{-$locale}/contacts'
+      path: '/contacts'
+      fullPath: '/{-$locale}/contacts'
+      preLoaderRoute: typeof Char123LocaleChar125ContactsRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
   }
 }
 
+interface Char123LocaleChar125RouteRouteChildren {
+  Char123LocaleChar125ContactsRoute: typeof Char123LocaleChar125ContactsRoute
+  Char123LocaleChar125DashboardRoute: typeof Char123LocaleChar125DashboardRoute
+  Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
+}
+
+const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
+  {
+    Char123LocaleChar125ContactsRoute: Char123LocaleChar125ContactsRoute,
+    Char123LocaleChar125DashboardRoute: Char123LocaleChar125DashboardRoute,
+    Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
+  }
+
+const Char123LocaleChar125RouteRouteWithChildren =
+  Char123LocaleChar125RouteRoute._addFileChildren(
+    Char123LocaleChar125RouteRouteChildren,
+  )
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  ContactsRoute: ContactsRoute,
-  DashboardRoute: DashboardRoute,
+  Char123LocaleChar125RouteRoute: Char123LocaleChar125RouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

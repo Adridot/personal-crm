@@ -14,6 +14,7 @@ Use:
 - React + Vite for the frontend,
 - TanStack Router for frontend routing,
 - TanStack Query for frontend data fetching and cache management,
+- Intlayer for frontend internationalization,
 - shadcn/ui configured on top of Base UI primitives,
 - and TanStack Start deferred unless the product later needs frontend server-runtime features that justify overlapping with NestJS.
 - Zod for shared transport contract schemas and inferred TypeScript types.

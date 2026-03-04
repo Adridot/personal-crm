@@ -4,7 +4,7 @@
 
 - Repository model: monorepo.
 - Workspace tooling: `pnpm` workspaces + Turborepo.
-- Frontend: React + Vite + TanStack Router + TanStack Query + shadcn/ui on Base UI.
+- Frontend: React + Vite + TanStack Router + TanStack Query + Intlayer + shadcn/ui on Base UI.
 - Backend: NestJS + Drizzle ORM + PostgreSQL + Better Auth.
 - Shared contract strategy: a focused internal package will hold shared Zod schemas and inferred TypeScript types for transport-level contracts.
 - API style: REST-first.
@@ -12,7 +12,7 @@
 - Reminder model: internal reminder system first.
 - Reminder recurrence baseline: one-time, weekly, monthly, yearly.
 - Import model: tracked jobs from day one.
-- Internationalization: frontend strings must be translation-ready from day one.
+- Internationalization: frontend strings must be translation-ready from day one, using Intlayer with `prefix-no-default`, English as the default locale, and cookie + localStorage persistence.
 
 ## Guiding Principles
 
@@ -85,10 +85,21 @@ The frontend is a single-page application with:
 - dashboard and contacts views as first-class pages,
 - TanStack Router as the routing baseline,
 - TanStack Query for server data synchronization,
+- Intlayer for frontend internationalization,
 - UI primitives based on shadcn/ui configured for Base UI,
 - and a Vite development server proxying `/api` calls to the NestJS backend.
 
 TanStack Start was evaluated for the frontend, but it is intentionally deferred while NestJS remains the primary backend runtime. The additional full-stack features in TanStack Start are not needed for the MVP shell and would overlap with responsibilities already assigned to NestJS.
+
+The approved frontend i18n baseline is:
+
+- Intlayer configured at the `apps/web` application level,
+- `prefix-no-default` locale routing,
+- English as the default locale,
+- cookie + localStorage locale persistence,
+- proxy-backed locale detection through `intlayerProxy()`,
+- colocated `.content.ts` dictionaries near routes and UI components,
+- and no editor, CMS, AI, or localized rewrite features in MVP.
 
 ## Data Ownership Model
 
