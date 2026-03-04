@@ -4,6 +4,12 @@ import type { FC } from "react";
 import { useLocale } from "react-intlayer";
 
 export const LOCALE_ROUTE = "{-$locale}" as const;
+type Locale = ReturnType<typeof useLocale>["locale"];
+export type LocalizedParams =
+  | undefined
+  | true
+  | Record<string, unknown>
+  | ((current: Record<string, unknown>) => Record<string, unknown>);
 
 type RemoveAll<
   Source extends string,
@@ -27,22 +33,54 @@ export type RemoveLocaleParam<T> = T extends string
 
 export type To = RemoveLocaleParam<LinkComponentProps["to"]>;
 
+export const mergeLocalizedParams = (
+  params: LocalizedParams,
+  localePrefix: string | undefined
+): LocalizedParams => {
+  if (params === true) {
+    return (current) => ({
+      ...current,
+      locale: localePrefix,
+    });
+  }
+
+  if (typeof params === "function") {
+    return (current) => ({
+      ...params(current),
+      locale: localePrefix,
+    });
+  }
+
+  return {
+    ...(params ?? {}),
+    locale: localePrefix,
+  };
+};
+
 type LocalizedLinkProps = {
+  locale?: Locale;
   to: To;
 } & Omit<LinkComponentProps, "to">;
 
-export const LocalizedLink: FC<LocalizedLinkProps> = (props) => {
+export const LocalizedLink: FC<LocalizedLinkProps> = ({
+  locale: localeOverride,
+  params,
+  to,
+  ...props
+}) => {
   const { locale } = useLocale();
-  const { localePrefix } = getPrefix(locale);
+  const { localePrefix } = getPrefix(localeOverride ?? locale);
 
   return (
     <Link
       {...props}
-      params={{
-        locale: localePrefix,
-        ...(typeof props.params === "object" ? props.params : {}),
-      }}
-      to={`/${LOCALE_ROUTE}${props.to}` as LinkComponentProps["to"]}
+      params={
+        mergeLocalizedParams(
+          params as LocalizedParams,
+          localePrefix
+        ) as LinkComponentProps["params"]
+      }
+      to={`/${LOCALE_ROUTE}${to}` as LinkComponentProps["to"]}
     />
   );
 };

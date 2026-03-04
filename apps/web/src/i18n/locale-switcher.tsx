@@ -3,7 +3,6 @@ import {
   getHTMLTextDir,
   getLocaleName,
   getPathWithoutLocale,
-  getPrefix,
   Locales,
 } from "intlayer";
 import type { FC } from "react";
@@ -30,7 +29,6 @@ export const LocaleSwitcher: FC<LocaleSwitcherProps> = ({ label }) => {
         {availableLocales.map((localeOption) => {
           const localeValue = String(localeOption) as typeof locale;
           const isActive = localeValue === locale;
-          const { localePrefix } = getPrefix(localeValue);
 
           return (
             <li key={localeValue}>
@@ -43,8 +41,10 @@ export const LocaleSwitcher: FC<LocaleSwitcherProps> = ({ label }) => {
                   }),
                   "w-full justify-start"
                 )}
+                hash={true}
+                locale={localeValue}
                 onClick={() => setLocale(localeValue)}
-                params={{ locale: localePrefix }}
+                search={true}
                 to={pathWithoutLocale as To}
               >
                 <span className="min-w-8 font-semibold">
