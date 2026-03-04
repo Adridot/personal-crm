@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import type { UserSession } from "@thallesp/nestjs-better-auth";
-import type { AccountMeResponse } from "../../../../../packages/contracts/src/account/account-me";
+import type { AccountMeResponse } from "@personal-crm/contracts";
 
 const toIsoString = (value: Date | string): string =>
   value instanceof Date ? value.toISOString() : value;
