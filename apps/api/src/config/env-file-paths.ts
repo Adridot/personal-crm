@@ -1,6 +1,7 @@
 import { resolve } from "node:path";
 
-const apiPackageRoot = resolve(__dirname, "..", "..");
+const currentDirectory = __dirname;
+const apiPackageRoot = resolve(currentDirectory, "..", "..");
 const repositoryRoot = resolve(apiPackageRoot, "..", "..");
 
 export const apiEnvFilePaths = [

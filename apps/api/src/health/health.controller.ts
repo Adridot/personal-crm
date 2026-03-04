@@ -6,6 +6,7 @@ import {
   HealthCheckService,
   MemoryHealthIndicator,
 } from "@nestjs/terminus";
+import { AllowAnonymous } from "@thallesp/nestjs-better-auth";
 
 const MEMORY_HEAP_LIMIT_BYTES = 256 * 1024 * 1024;
 
@@ -17,6 +18,7 @@ export class HealthController {
   ) {}
 
   @Get()
+  @AllowAnonymous()
   @HealthCheck()
   check(): Promise<HealthCheckResult> {
     return this.health.check([
