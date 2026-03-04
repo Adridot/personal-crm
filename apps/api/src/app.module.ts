@@ -4,6 +4,7 @@ import { ConfigModule } from "@nestjs/config";
 import { appConfig } from "./config/app.config";
 import { corsConfig } from "./config/cors.config";
 import { apiEnvFilePaths } from "./config/env-file-paths";
+import { DatabaseModule } from "./db/database.module";
 import { HealthModule } from "./health/health.module";
 import { AccountModule } from "./modules/account/account.module";
 import { AuthModule } from "./modules/auth/auth.module";
@@ -25,6 +26,7 @@ import { UsersModule } from "./modules/users/users.module";
       isGlobal: true,
       load: [appConfig, corsConfig],
     }),
+    DatabaseModule,
     AccountModule,
     AuthModule,
     ContactsModule,

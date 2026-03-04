@@ -37,6 +37,7 @@ Project planning and architecture documentation live in [project/README.md](proj
    - `pnpm db:reset`
 
 The local database runs PostgreSQL 18 through Docker Compose and expects `DATABASE_URL` in the root `.env` file.
+Better Auth also expects `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, and the frontend origins allowed to call auth endpoints.
 
 ## Database Schema Workflow
 
