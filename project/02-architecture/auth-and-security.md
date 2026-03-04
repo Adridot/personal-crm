@@ -5,6 +5,8 @@
 - Authentication provider: Better Auth.
 - Account model: one account equals one user.
 - Session model: secure cookie or token-backed session managed through Better Auth.
+- Core auth schema baseline: Better Auth default tables `user`, `session`, `account`, and `verification`.
+- Auth user identifier baseline: text/string id from Better Auth defaults, not UUID.
 - Authorization rule: every user-owned record must be scoped by authenticated ownership.
 
 ## Security Decisions
@@ -33,6 +35,7 @@ Google import requires OAuth access. Provider tokens must be treated as sensitiv
 
 - All domain queries must enforce `user_id` ownership.
 - Service and controller layers must not trust client-submitted ownership fields.
+- Domain `user_id` foreign keys must align with the Better Auth `user.id` string/text type.
 - Future row-level security may be evaluated, but application-level filtering is the approved baseline.
 
 ### GDPR and Data Control

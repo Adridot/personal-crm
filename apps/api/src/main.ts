@@ -16,6 +16,8 @@ const normalizeOrigin = (origin: string): string =>
 
 const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create(AppModule);
+  app.enableShutdownHooks();
+
   const configService = app.get(ConfigService);
   const allowedOrigins =
     configService.get<string[]>("cors.allowedOrigins") ?? [];

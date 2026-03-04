@@ -61,8 +61,8 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 ## MVP-006: Add Drizzle schema and migration baseline
 
 - Objective: introduce database schema management.
-- Scope: Drizzle config, migration pipeline, initial user-related schema.
-- Implementation notes: keep schema ownership explicit from the start.
+- Scope: Drizzle config, migration pipeline, Better Auth core schema generation, and the first applied PostgreSQL migration.
+- Implementation notes: keep schema ownership explicit from the start, treat the Better Auth-generated schema as a committed source artifact, and align future `user_id` foreign keys with the Better Auth `user.id` text/string type.
 - Dependencies: MVP-002, MVP-003.
 - Acceptance criteria: migrations run successfully against local PostgreSQL.
 - Estimate: 1 day

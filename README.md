@@ -37,6 +37,20 @@ Project planning and architecture documentation live in [project/README.md](proj
    - `pnpm db:reset`
 
 The local database runs PostgreSQL 18 through Docker Compose and expects `DATABASE_URL` in the root `.env` file.
+Better Auth also expects `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, and the frontend origins allowed to call auth endpoints.
+
+## Database Schema Workflow
+
+1. Regenerate the Better Auth schema source:
+   - `pnpm db:auth:generate`
+2. Generate a new Drizzle migration:
+   - `pnpm db:generate`
+3. Apply pending migrations:
+   - `pnpm db:migrate`
+4. Explore the database schema locally:
+   - `pnpm db:studio`
+
+The API uses Better Auth's default core tables (`user`, `session`, `account`, `verification`) as the auth schema baseline.
 
 ## API
 
