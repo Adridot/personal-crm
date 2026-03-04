@@ -1,7 +1,7 @@
 import { Controller, Get, Inject } from "@nestjs/common";
 import type { UserSession } from "@thallesp/nestjs-better-auth";
 import { Session } from "@thallesp/nestjs-better-auth";
-import type { AccountMeResponse } from "../../../../../packages/contracts/src/account/account-me";
+import type { AccountMeResponse } from "@personal-crm/contracts";
 
 import { AccountService } from "./account.service";
 
