@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export const Route = createFileRoute("/{-$locale}/dashboard")({
+export const Route = createFileRoute("/{-$locale}/_authenticated/dashboard")({
   component: DashboardRouteComponent,
 });
 

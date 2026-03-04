@@ -27,6 +27,22 @@ const appShellContent = {
       en: "Contacts",
       fr: "Contacts",
     }),
+    accountLabel: t({
+      en: "Signed in as",
+      fr: "Connecté en tant que",
+    }),
+    loadingAccountLabel: t({
+      en: "Loading session...",
+      fr: "Chargement de la session...",
+    }),
+    signOutLabel: t({
+      en: "Sign out",
+      fr: "Se déconnecter",
+    }),
+    signOutPendingLabel: t({
+      en: "Signing out...",
+      fr: "Déconnexion...",
+    }),
   },
 } satisfies Dictionary;
 

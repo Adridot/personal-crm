@@ -11,8 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
 import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
-import { Route as Char123LocaleChar125DashboardRouteImport } from './routes/{-$locale}/dashboard'
-import { Route as Char123LocaleChar125ContactsRouteImport } from './routes/{-$locale}/contacts'
+import { Route as Char123LocaleChar125SignUpRouteImport } from './routes/{-$locale}/sign-up'
+import { Route as Char123LocaleChar125SignInRouteImport } from './routes/{-$locale}/sign-in'
+import { Route as Char123LocaleChar125AuthenticatedRouteImport } from './routes/{-$locale}/_authenticated'
+import { Route as Char123LocaleChar125AuthenticatedDashboardRouteImport } from './routes/{-$locale}/_authenticated/dashboard'
+import { Route as Char123LocaleChar125AuthenticatedContactsRouteImport } from './routes/{-$locale}/_authenticated/contacts'
 
 const Char123LocaleChar125RouteRoute =
   Char123LocaleChar125RouteRouteImport.update({
@@ -26,52 +29,86 @@ const Char123LocaleChar125IndexRoute =
     path: '/',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
-const Char123LocaleChar125DashboardRoute =
-  Char123LocaleChar125DashboardRouteImport.update({
-    id: '/dashboard',
-    path: '/dashboard',
+const Char123LocaleChar125SignUpRoute =
+  Char123LocaleChar125SignUpRouteImport.update({
+    id: '/sign-up',
+    path: '/sign-up',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
-const Char123LocaleChar125ContactsRoute =
-  Char123LocaleChar125ContactsRouteImport.update({
+const Char123LocaleChar125SignInRoute =
+  Char123LocaleChar125SignInRouteImport.update({
+    id: '/sign-in',
+    path: '/sign-in',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125AuthenticatedRoute =
+  Char123LocaleChar125AuthenticatedRouteImport.update({
+    id: '/_authenticated',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125AuthenticatedDashboardRoute =
+  Char123LocaleChar125AuthenticatedDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => Char123LocaleChar125AuthenticatedRoute,
+  } as any)
+const Char123LocaleChar125AuthenticatedContactsRoute =
+  Char123LocaleChar125AuthenticatedContactsRouteImport.update({
     id: '/contacts',
     path: '/contacts',
-    getParentRoute: () => Char123LocaleChar125RouteRoute,
+    getParentRoute: () => Char123LocaleChar125AuthenticatedRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
-  '/{-$locale}/contacts': typeof Char123LocaleChar125ContactsRoute
-  '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRoute
+  '/{-$locale}': typeof Char123LocaleChar125AuthenticatedRouteWithChildren
+  '/{-$locale}/sign-in': typeof Char123LocaleChar125SignInRoute
+  '/{-$locale}/sign-up': typeof Char123LocaleChar125SignUpRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/contacts': typeof Char123LocaleChar125AuthenticatedContactsRoute
+  '/{-$locale}/dashboard': typeof Char123LocaleChar125AuthenticatedDashboardRoute
 }
 export interface FileRoutesByTo {
-  '/{-$locale}/contacts': typeof Char123LocaleChar125ContactsRoute
-  '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRoute
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/sign-in': typeof Char123LocaleChar125SignInRoute
+  '/{-$locale}/sign-up': typeof Char123LocaleChar125SignUpRoute
+  '/{-$locale}/contacts': typeof Char123LocaleChar125AuthenticatedContactsRoute
+  '/{-$locale}/dashboard': typeof Char123LocaleChar125AuthenticatedDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
-  '/{-$locale}/contacts': typeof Char123LocaleChar125ContactsRoute
-  '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRoute
+  '/{-$locale}/_authenticated': typeof Char123LocaleChar125AuthenticatedRouteWithChildren
+  '/{-$locale}/sign-in': typeof Char123LocaleChar125SignInRoute
+  '/{-$locale}/sign-up': typeof Char123LocaleChar125SignUpRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/_authenticated/contacts': typeof Char123LocaleChar125AuthenticatedContactsRoute
+  '/{-$locale}/_authenticated/dashboard': typeof Char123LocaleChar125AuthenticatedDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/{-$locale}'
+    | '/{-$locale}/sign-in'
+    | '/{-$locale}/sign-up'
+    | '/{-$locale}/'
     | '/{-$locale}/contacts'
     | '/{-$locale}/dashboard'
-    | '/{-$locale}/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/{-$locale}/contacts' | '/{-$locale}/dashboard' | '/{-$locale}'
+  to:
+    | '/{-$locale}'
+    | '/{-$locale}/sign-in'
+    | '/{-$locale}/sign-up'
+    | '/{-$locale}/contacts'
+    | '/{-$locale}/dashboard'
   id:
     | '__root__'
     | '/{-$locale}'
-    | '/{-$locale}/contacts'
-    | '/{-$locale}/dashboard'
+    | '/{-$locale}/_authenticated'
+    | '/{-$locale}/sign-in'
+    | '/{-$locale}/sign-up'
     | '/{-$locale}/'
+    | '/{-$locale}/_authenticated/contacts'
+    | '/{-$locale}/_authenticated/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,33 +131,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/{-$locale}/dashboard': {
-      id: '/{-$locale}/dashboard'
-      path: '/dashboard'
-      fullPath: '/{-$locale}/dashboard'
-      preLoaderRoute: typeof Char123LocaleChar125DashboardRouteImport
+    '/{-$locale}/sign-up': {
+      id: '/{-$locale}/sign-up'
+      path: '/sign-up'
+      fullPath: '/{-$locale}/sign-up'
+      preLoaderRoute: typeof Char123LocaleChar125SignUpRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/{-$locale}/contacts': {
-      id: '/{-$locale}/contacts'
+    '/{-$locale}/sign-in': {
+      id: '/{-$locale}/sign-in'
+      path: '/sign-in'
+      fullPath: '/{-$locale}/sign-in'
+      preLoaderRoute: typeof Char123LocaleChar125SignInRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/_authenticated': {
+      id: '/{-$locale}/_authenticated'
+      path: ''
+      fullPath: '/{-$locale}'
+      preLoaderRoute: typeof Char123LocaleChar125AuthenticatedRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/_authenticated/dashboard': {
+      id: '/{-$locale}/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/{-$locale}/dashboard'
+      preLoaderRoute: typeof Char123LocaleChar125AuthenticatedDashboardRouteImport
+      parentRoute: typeof Char123LocaleChar125AuthenticatedRoute
+    }
+    '/{-$locale}/_authenticated/contacts': {
+      id: '/{-$locale}/_authenticated/contacts'
       path: '/contacts'
       fullPath: '/{-$locale}/contacts'
-      preLoaderRoute: typeof Char123LocaleChar125ContactsRouteImport
-      parentRoute: typeof Char123LocaleChar125RouteRoute
+      preLoaderRoute: typeof Char123LocaleChar125AuthenticatedContactsRouteImport
+      parentRoute: typeof Char123LocaleChar125AuthenticatedRoute
     }
   }
 }
 
+interface Char123LocaleChar125AuthenticatedRouteChildren {
+  Char123LocaleChar125AuthenticatedContactsRoute: typeof Char123LocaleChar125AuthenticatedContactsRoute
+  Char123LocaleChar125AuthenticatedDashboardRoute: typeof Char123LocaleChar125AuthenticatedDashboardRoute
+}
+
+const Char123LocaleChar125AuthenticatedRouteChildren: Char123LocaleChar125AuthenticatedRouteChildren =
+  {
+    Char123LocaleChar125AuthenticatedContactsRoute:
+      Char123LocaleChar125AuthenticatedContactsRoute,
+    Char123LocaleChar125AuthenticatedDashboardRoute:
+      Char123LocaleChar125AuthenticatedDashboardRoute,
+  }
+
+const Char123LocaleChar125AuthenticatedRouteWithChildren =
+  Char123LocaleChar125AuthenticatedRoute._addFileChildren(
+    Char123LocaleChar125AuthenticatedRouteChildren,
+  )
+
 interface Char123LocaleChar125RouteRouteChildren {
-  Char123LocaleChar125ContactsRoute: typeof Char123LocaleChar125ContactsRoute
-  Char123LocaleChar125DashboardRoute: typeof Char123LocaleChar125DashboardRoute
+  Char123LocaleChar125AuthenticatedRoute: typeof Char123LocaleChar125AuthenticatedRouteWithChildren
+  Char123LocaleChar125SignInRoute: typeof Char123LocaleChar125SignInRoute
+  Char123LocaleChar125SignUpRoute: typeof Char123LocaleChar125SignUpRoute
   Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
 }
 
 const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
   {
-    Char123LocaleChar125ContactsRoute: Char123LocaleChar125ContactsRoute,
-    Char123LocaleChar125DashboardRoute: Char123LocaleChar125DashboardRoute,
+    Char123LocaleChar125AuthenticatedRoute:
+      Char123LocaleChar125AuthenticatedRouteWithChildren,
+    Char123LocaleChar125SignInRoute: Char123LocaleChar125SignInRoute,
+    Char123LocaleChar125SignUpRoute: Char123LocaleChar125SignUpRoute,
     Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
   }
 

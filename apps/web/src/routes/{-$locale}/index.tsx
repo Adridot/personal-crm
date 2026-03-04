@@ -1,16 +1,16 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { defaultLocale, getBrowserLocale, getPrefix } from "intlayer";
+
+import { getLocalizedAppPath, getSessionOrNull } from "@/lib/auth-session";
 
 export const Route = createFileRoute("/{-$locale}/")({
-  beforeLoad: ({ params }) => {
-    const resolvedLocale = params.locale ?? getBrowserLocale() ?? defaultLocale;
-    const { localePrefix } = getPrefix(resolvedLocale);
+  beforeLoad: async ({ params }) => {
+    const session = await getSessionOrNull();
 
     throw redirect({
-      hash: true,
-      params: { locale: localePrefix },
-      search: true,
-      to: "/{-$locale}/dashboard",
+      href: session
+        ? getLocalizedAppPath("/dashboard", params.locale)
+        : getLocalizedAppPath("/sign-in", params.locale),
+      replace: true,
     });
   },
 });

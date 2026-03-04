@@ -5,9 +5,27 @@ import { defineConfig } from "vite";
 import { intlayer, intlayerProxy } from "vite-intlayer";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+const API_PATHNAME_REGEX = /^\/(?:[a-z]{2}(?:-[A-Z]{2})?\/)?api(?:\/|$)/;
+const LOCALIZED_API_REWRITE_REGEX = /^\/(en|fr)\/api/;
+
+const getRequestPathname = (requestUrl: string | undefined): string => {
+  if (!requestUrl) {
+    return "";
+  }
+
+  try {
+    return new URL(requestUrl, "http://localhost").pathname;
+  } catch {
+    return requestUrl;
+  }
+};
+
 export default defineConfig({
   plugins: [
-    intlayerProxy(),
+    intlayerProxy(undefined, {
+      ignore: (request) =>
+        API_PATHNAME_REGEX.test(getRequestPathname(request.url)),
+    }),
     tailwindcss(),
     tsconfigPaths({ projects: ["./tsconfig.app.json"] }),
     intlayer(),
@@ -25,6 +43,11 @@ export default defineConfig({
       "/api": {
         target: "http://localhost:3000",
         changeOrigin: true,
+      },
+      "^/(en|fr)/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(LOCALIZED_API_REWRITE_REGEX, "/api"),
       },
     },
   },
