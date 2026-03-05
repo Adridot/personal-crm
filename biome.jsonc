@@ -30,6 +30,31 @@
       "linter": {
         "enabled": false
       }
+    },
+    {
+      "includes": ["apps/web/src/components/ui/**/*.tsx"],
+      "assist": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      },
+      "linter": {
+        "rules": {
+          "a11y": {
+            "noLabelWithoutControl": "off"
+          },
+          "nursery": {
+            "useSortedClasses": "off"
+          },
+          "performance": {
+            "noNamespaceImport": "off"
+          },
+          "style": {
+            "useImportType": "off"
+          }
+        }
+      }
     }
   ]
 }
