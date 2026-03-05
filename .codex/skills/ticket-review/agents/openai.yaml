@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ticket Review"
+  short_description: "Review code changes with severity and evidence"
+  default_prompt: "Use $ticket-review to perform a rigorous adaptive review with P0-P3 findings, confidence, evidence, and fix recommendations."

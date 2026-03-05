@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ticket Execution"
+  short_description: "Execute validated tickets with strict guardrails"
+  default_prompt: "Use $ticket-execution to implement this validated ticket with strict execution guardrails and no autonomous scope drift."

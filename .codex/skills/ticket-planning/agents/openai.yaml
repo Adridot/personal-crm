@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ticket Planning"
+  short_description: "Plan scoped tickets with options and decisions"
+  default_prompt: "Use $ticket-planning to analyze this ticket, present options, and ask blocking questions before implementation."
