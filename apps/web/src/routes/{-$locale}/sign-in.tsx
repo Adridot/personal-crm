@@ -207,8 +207,8 @@ function SignInRouteComponent() {
                 {errorMessage}
               </p>
             ) : null}
-            <form.Subscribe selector={(state) => state.isSubmitting}>
-              {(isSubmitting: boolean) => (
+            <form.Subscribe<boolean> selector={(state) => state.isSubmitting}>
+              {(isSubmitting) => (
                 <Button disabled={isSubmitting} type="submit">
                   {isSubmitting
                     ? content.submitPendingLabel
