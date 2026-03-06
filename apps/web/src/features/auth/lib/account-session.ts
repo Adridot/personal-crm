@@ -1,7 +1,7 @@
 import { type QueryClient, queryOptions } from "@tanstack/react-query";
 import { z } from "zod";
 
-import { authClient } from "./auth-client";
+import { authClient } from "@/features/auth/lib/auth-client";
 
 const accountSessionSchema = z.object({
   expiresAt: z

@@ -3,13 +3,11 @@ import { useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useIntlayer } from "react-intlayer";
 
-import { AuthPageShell } from "@/components/auth-page-shell";
-import { AuthTextField } from "@/components/auth-text-field";
 import { Button } from "@/components/ui/button";
-import { LocalizedLink } from "@/i18n/localized-link";
-import { useLocalizedNavigate } from "@/i18n/use-localized-navigate";
-import { accountMeQueryKey } from "@/lib/account-session";
-import { authClient } from "@/lib/auth-client";
+import { AuthPageShell } from "@/features/auth/components/auth-page-shell";
+import { AuthTextField } from "@/features/auth/components/auth-text-field";
+import { accountMeQueryKey } from "@/features/auth/lib/account-session";
+import { authClient } from "@/features/auth/lib/auth-client";
 import {
   AUTH_FORM_ERROR_CODES,
   getAuthFormErrorMessage,
@@ -21,12 +19,14 @@ import {
   validatePasswordConfirmationField,
   validatePasswordField,
   validateSignUpForm,
-} from "@/lib/auth-form-errors";
+} from "@/features/auth/lib/auth-form-errors";
 import {
   type AuthRedirectPath,
   parseAuthRedirectPath,
   resolveAuthRedirectPath,
-} from "@/lib/auth-redirect";
+} from "@/features/auth/lib/auth-redirect";
+import { LocalizedLink } from "@/i18n/localized-link";
+import { useLocalizedNavigate } from "@/i18n/use-localized-navigate";
 
 interface SignUpSearch {
   redirect?: AuthRedirectPath;

@@ -3,8 +3,8 @@ import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import {
   fetchFreshAccountSession,
   isUnauthorizedSessionError,
-} from "@/lib/account-session";
-import { resolveAuthRedirectPath } from "@/lib/auth-redirect";
+} from "@/features/auth/lib/account-session";
+import { resolveAuthRedirectPath } from "@/features/auth/lib/auth-redirect";
 import type { FileRouteTypes } from "@/routeTree.gen";
 
 export const Route = createFileRoute("/{-$locale}/_guest")({

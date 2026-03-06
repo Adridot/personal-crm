@@ -1,13 +1,12 @@
 import type { QueryClient } from "@tanstack/react-query";
 import { redirect } from "@tanstack/react-router";
 import { getPathWithoutLocale } from "intlayer";
-
-import type { FileRouteTypes } from "@/routeTree.gen";
 import {
   fetchFreshAccountSession,
   isUnauthorizedSessionError,
-} from "./account-session";
-import { resolveAuthRedirectPath } from "./auth-redirect";
+} from "@/features/auth/lib/account-session";
+import { resolveAuthRedirectPath } from "@/features/auth/lib/auth-redirect";
+import type { FileRouteTypes } from "@/routeTree.gen";
 
 interface RequireAuthRouteArgs {
   locale: string | undefined;

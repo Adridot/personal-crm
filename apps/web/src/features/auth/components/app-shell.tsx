@@ -3,18 +3,16 @@ import { useRouterState } from "@tanstack/react-router";
 import { getPathWithoutLocale } from "intlayer";
 import { type PropsWithChildren, useState } from "react";
 import { useIntlayer } from "react-intlayer";
-
-import { LocaleSwitcher } from "@/i18n/locale-switcher";
-import { LocalizedLink } from "@/i18n/localized-link";
-import { useLocalizedNavigate } from "@/i18n/use-localized-navigate";
+import { Button } from "@/components/ui/button";
 import {
   accountMeQueryKey,
   accountMeQueryOptions,
-} from "@/lib/account-session";
-import { authClient } from "@/lib/auth-client";
+} from "@/features/auth/lib/account-session";
+import { authClient } from "@/features/auth/lib/auth-client";
+import { LocaleSwitcher } from "@/i18n/locale-switcher";
+import { LocalizedLink } from "@/i18n/localized-link";
+import { useLocalizedNavigate } from "@/i18n/use-localized-navigate";
 import { cn } from "@/lib/utils";
-
-import { Button } from "./ui/button";
 
 const SIGN_OUT_ERROR_FALLBACK_MESSAGE =
   "Unable to sign out right now. Please try again.";

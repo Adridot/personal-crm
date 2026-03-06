@@ -4,7 +4,7 @@ import {
   RouterErrorFallback,
   RouterNotFoundFallback,
   RouterPendingFallback,
-} from "@/components/router-fallbacks";
+} from "@/components/errors/router-fallbacks";
 import { queryClient } from "@/lib/query-client";
 import { routeTree } from "@/routeTree.gen";
 
