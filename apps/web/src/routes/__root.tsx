@@ -7,8 +7,7 @@ import {
 import { defaultLocale, getHTMLTextDir } from "intlayer";
 import { useEffect } from "react";
 import { IntlayerProvider } from "react-intlayer";
-
-import { AppShell } from "@/components/app-shell";
+import { configureZodLocale } from "@/lib/zod-locale";
 
 interface RouterContext {
   queryClient: QueryClient;
@@ -26,6 +25,7 @@ function RootRouteComponent() {
   useEffect(() => {
     document.documentElement.lang = locale;
     document.documentElement.dir = getHTMLTextDir(locale);
+    configureZodLocale(locale);
   }, [locale]);
 
   return (
@@ -35,9 +35,7 @@ function RootRouteComponent() {
       isCookieEnabled
       locale={locale}
     >
-      <AppShell>
-        <Outlet />
-      </AppShell>
+      <Outlet />
     </IntlayerProvider>
   );
 }

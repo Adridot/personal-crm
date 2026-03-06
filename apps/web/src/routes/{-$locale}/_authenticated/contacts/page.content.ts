@@ -5,7 +5,7 @@ const contactsPageContent = {
   content: {
     title: t({
       en: "Contacts",
-      fr: "Contacts",
+      fr: "Carnet de contacts",
     }),
     description: t({
       en: "The contact list route is ready for the upcoming query layer, filters, and CRUD flows.",

@@ -7,7 +7,10 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [
-    intlayerProxy(),
+    intlayerProxy(undefined, {
+      ignore: (request) =>
+        request.url?.includes("/api/") || request.url?.endsWith("/api"),
+    }),
     tailwindcss(),
     tsconfigPaths({ projects: ["./tsconfig.app.json"] }),
     intlayer(),

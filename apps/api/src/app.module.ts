@@ -6,7 +6,6 @@ import { corsConfig } from "./config/cors.config";
 import { apiEnvFilePaths } from "./config/env-file-paths";
 import { DatabaseModule } from "./db/database.module";
 import { HealthModule } from "./health/health.module";
-import { AccountModule } from "./modules/account/account.module";
 import { AuthModule } from "./modules/auth/auth.module";
 import { ContactsModule } from "./modules/contacts/contacts.module";
 import { GroupsModule } from "./modules/groups/groups.module";
@@ -27,7 +26,6 @@ import { UsersModule } from "./modules/users/users.module";
       load: [appConfig, corsConfig],
     }),
     DatabaseModule,
-    AccountModule,
     AuthModule,
     ContactsModule,
     GroupsModule,

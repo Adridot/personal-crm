@@ -3,6 +3,8 @@ node_modules/
 .pnpm-store/
 .turbo/
 **/.turbo/
+.tanstack/
+**/.tanstack/
 .intlayer/
 **/.intlayer/
 dist/
