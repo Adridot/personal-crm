@@ -260,5 +260,5 @@ export const getAuthFormErrorMessage = (
     return defaultMessage;
   }
 
-  return messages[error.code] ?? defaultMessage;
+  return messages[error.code] ?? error.fallbackMessage ?? defaultMessage;
 };

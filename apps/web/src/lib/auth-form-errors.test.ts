@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   AUTH_FORM_ERROR_CODES,
+  getAuthFormErrorMessage,
   getVisibleFieldError,
   getVisibleFormError,
   normalizeSignInAuthError,
@@ -110,5 +111,19 @@ describe("auth-form-errors", () => {
       code: AUTH_FORM_ERROR_CODES.invalidCredentials,
       source: "auth",
     });
+  });
+
+  it("falls back to the Better Auth message when no localized mapping exists", () => {
+    expect(
+      getAuthFormErrorMessage(
+        {
+          code: AUTH_FORM_ERROR_CODES.authFailed,
+          fallbackMessage: "Email address is already registered.",
+          source: "auth",
+        },
+        {},
+        "Something went wrong."
+      )
+    ).toBe("Email address is already registered.");
   });
 });

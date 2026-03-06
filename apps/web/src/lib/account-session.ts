@@ -1,4 +1,4 @@
-import { queryOptions } from "@tanstack/react-query";
+import { type QueryClient, queryOptions } from "@tanstack/react-query";
 import { z } from "zod";
 
 import { authClient } from "./auth-client";
@@ -101,6 +101,14 @@ export const accountMeQueryOptions = queryOptions({
   retry: false,
   staleTime: 60_000,
 });
+
+export const fetchFreshAccountSession = (
+  queryClient: QueryClient
+): Promise<AccountMeResponse> =>
+  queryClient.fetchQuery({
+    ...accountMeQueryOptions,
+    staleTime: 0,
+  });
 
 export const isSessionRequestError = (
   value: unknown

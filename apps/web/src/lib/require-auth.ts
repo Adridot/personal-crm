@@ -4,7 +4,7 @@ import { getPathWithoutLocale } from "intlayer";
 
 import type { FileRouteTypes } from "@/routeTree.gen";
 import {
-  accountMeQueryOptions,
+  fetchFreshAccountSession,
   isUnauthorizedSessionError,
 } from "./account-session";
 import { resolveAuthRedirectPath } from "./auth-redirect";
@@ -21,7 +21,7 @@ export const requireAuthRoute = async ({
   queryClient,
 }: RequireAuthRouteArgs): Promise<void> => {
   try {
-    await queryClient.ensureQueryData(accountMeQueryOptions);
+    await fetchFreshAccountSession(queryClient);
   } catch (error) {
     if (!isUnauthorizedSessionError(error)) {
       throw error;
