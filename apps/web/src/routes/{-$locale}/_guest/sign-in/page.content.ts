@@ -35,6 +35,18 @@ const signInPageContent = {
       en: "Signing in...",
       fr: "Connexion...",
     }),
+    requiredMessage: t({
+      en: "This field is required.",
+      fr: "Ce champ est obligatoire.",
+    }),
+    invalidEmailMessage: t({
+      en: "Enter a valid email address.",
+      fr: "Saisissez une adresse e-mail valide.",
+    }),
+    passwordTooShortMessage: t({
+      en: "Password must be at least 8 characters.",
+      fr: "Le mot de passe doit contenir au moins 8 caractères.",
+    }),
     invalidCredentialsMessage: t({
       en: "Your credentials are invalid. Please verify your email and password.",
       fr: "Vos identifiants sont invalides. Vérifiez votre e-mail et votre mot de passe.",

@@ -51,6 +51,22 @@ const signUpPageContent = {
       en: "Creating account...",
       fr: "Création du compte...",
     }),
+    requiredMessage: t({
+      en: "This field is required.",
+      fr: "Ce champ est obligatoire.",
+    }),
+    invalidEmailMessage: t({
+      en: "Enter a valid email address.",
+      fr: "Saisissez une adresse e-mail valide.",
+    }),
+    nameTooShortMessage: t({
+      en: "Name must be at least 2 characters.",
+      fr: "Le nom doit contenir au moins 2 caractères.",
+    }),
+    passwordTooShortMessage: t({
+      en: "Password must be at least 8 characters.",
+      fr: "Le mot de passe doit contenir au moins 8 caractères.",
+    }),
     passwordMismatchMessage: t({
       en: "Passwords do not match.",
       fr: "Les mots de passe ne correspondent pas.",

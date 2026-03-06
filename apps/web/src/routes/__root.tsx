@@ -7,7 +7,6 @@ import {
 import { defaultLocale, getHTMLTextDir } from "intlayer";
 import { useEffect } from "react";
 import { IntlayerProvider } from "react-intlayer";
-import { configureZodLocale } from "@/lib/zod-locale";
 
 interface RouterContext {
   queryClient: QueryClient;
@@ -25,7 +24,6 @@ function RootRouteComponent() {
   useEffect(() => {
     document.documentElement.lang = locale;
     document.documentElement.dir = getHTMLTextDir(locale);
-    configureZodLocale(locale);
   }, [locale]);
 
   return (
