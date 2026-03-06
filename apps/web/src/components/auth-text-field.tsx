@@ -1,8 +1,8 @@
 import type { AnyFieldApi } from "@tanstack/react-form";
 import type { ReactNode } from "react";
 
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 interface AuthTextFieldProps {
   autoComplete?: string;
@@ -20,26 +20,27 @@ export const AuthTextField = ({
   label,
   placeholder,
   type,
-}: AuthTextFieldProps) => (
-  <div className="space-y-2">
-    <Label htmlFor={field.name}>{label}</Label>
-    <Input
-      aria-invalid={errorMessage ? true : undefined}
-      autoComplete={autoComplete}
-      id={field.name}
-      name={field.name}
-      onBlur={field.handleBlur}
-      onChange={(event) => {
-        field.handleChange(event.target.value);
-      }}
-      placeholder={placeholder}
-      type={type}
-      value={typeof field.state.value === "string" ? field.state.value : ""}
-    />
-    {field.state.meta.isTouched && errorMessage ? (
-      <p className="text-destructive text-sm" role="alert">
-        {errorMessage}
-      </p>
-    ) : null}
-  </div>
-);
+}: AuthTextFieldProps) => {
+  const errorId = `${field.name}-error`;
+
+  return (
+    <Field className="gap-2" data-invalid={errorMessage ? true : undefined}>
+      <FieldLabel htmlFor={field.name}>{label}</FieldLabel>
+      <Input
+        aria-describedby={errorMessage ? errorId : undefined}
+        aria-invalid={errorMessage ? true : undefined}
+        autoComplete={autoComplete}
+        id={field.name}
+        name={field.name}
+        onBlur={field.handleBlur}
+        onChange={(event) => {
+          field.handleChange(event.target.value);
+        }}
+        placeholder={placeholder}
+        type={type}
+        value={typeof field.state.value === "string" ? field.state.value : ""}
+      />
+      <FieldError id={errorId}>{errorMessage}</FieldError>
+    </Field>
+  );
+};
