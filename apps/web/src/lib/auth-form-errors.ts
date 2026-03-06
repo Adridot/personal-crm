@@ -29,10 +29,14 @@ export interface AuthFormError {
 interface UnknownAuthFieldErrorMap {
   onBlur?: unknown;
   onChange?: unknown;
+  onDynamic?: unknown;
+  onServer?: unknown;
   onSubmit?: unknown;
 }
 
 interface UnknownAuthFormErrorMap {
+  onDynamic?: unknown;
+  onServer?: unknown;
   onSubmit?: unknown;
 }
 
@@ -224,15 +228,28 @@ export const getVisibleFieldError = (
   errorMap: UnknownAuthFieldErrorMap
 ): AuthFormError | undefined => {
   const resolvedError =
-    errorMap.onBlur ?? errorMap.onSubmit ?? errorMap.onChange;
+    errorMap.onDynamic ??
+    errorMap.onBlur ??
+    errorMap.onSubmit ??
+    errorMap.onChange ??
+    errorMap.onServer;
 
   return isAuthFormError(resolvedError) ? resolvedError : undefined;
 };
 
 export const getVisibleFormError = (
   errorMap: UnknownAuthFormErrorMap
-): AuthFormError | undefined =>
-  isAuthFormError(errorMap.onSubmit) ? errorMap.onSubmit : undefined;
+): AuthFormError | undefined => {
+  if (isAuthFormError(errorMap.onServer)) {
+    return errorMap.onServer;
+  }
+
+  if (isAuthFormError(errorMap.onDynamic)) {
+    return errorMap.onDynamic;
+  }
+
+  return isAuthFormError(errorMap.onSubmit) ? errorMap.onSubmit : undefined;
+};
 
 export const getAuthFormErrorMessage = (
   error: AuthFormError | null | undefined,

@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   AUTH_FORM_ERROR_CODES,
   getVisibleFieldError,
+  getVisibleFormError,
   normalizeSignInAuthError,
   validateEmailField,
   validateSignUpForm,
@@ -69,6 +70,45 @@ describe("auth-form-errors", () => {
       code: AUTH_FORM_ERROR_CODES.invalidEmail,
       field: "email",
       source: "validation",
+    });
+  });
+
+  it("prioritizes dynamic field errors over blur errors", () => {
+    expect(
+      getVisibleFieldError({
+        onBlur: {
+          code: AUTH_FORM_ERROR_CODES.required,
+          field: "passwordConfirmation",
+          source: "validation",
+        },
+        onDynamic: {
+          code: AUTH_FORM_ERROR_CODES.passwordMismatch,
+          field: "passwordConfirmation",
+          source: "validation",
+        },
+      })
+    ).toEqual({
+      code: AUTH_FORM_ERROR_CODES.passwordMismatch,
+      field: "passwordConfirmation",
+      source: "validation",
+    });
+  });
+
+  it("prioritizes server form errors over dynamic errors", () => {
+    expect(
+      getVisibleFormError({
+        onDynamic: {
+          code: AUTH_FORM_ERROR_CODES.authFailed,
+          source: "auth",
+        },
+        onServer: {
+          code: AUTH_FORM_ERROR_CODES.invalidCredentials,
+          source: "auth",
+        },
+      })
+    ).toEqual({
+      code: AUTH_FORM_ERROR_CODES.invalidCredentials,
+      source: "auth",
     });
   });
 });

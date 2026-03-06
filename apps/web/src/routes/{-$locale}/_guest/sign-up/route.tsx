@@ -1,4 +1,4 @@
-import { useForm } from "@tanstack/react-form";
+import { revalidateLogic, useForm } from "@tanstack/react-form";
 import { useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useIntlayer } from "react-intlayer";
@@ -63,8 +63,14 @@ function SignUpRouteComponent() {
       password: "",
       passwordConfirmation: "",
     },
+    validationLogic: revalidateLogic(),
+    listeners: {
+      onChange: ({ formApi }) => {
+        formApi.setErrorMap({ onSubmit: undefined });
+      },
+    },
     validators: {
-      onSubmit: validateSignUpForm,
+      onDynamic: validateSignUpForm,
     },
     onSubmit: async ({ formApi, value }) => {
       formApi.setErrorMap({ onSubmit: undefined });
@@ -78,7 +84,10 @@ function SignUpRouteComponent() {
         {
           onError: ({ error }) => {
             formApi.setErrorMap({
-              onSubmit: normalizeSignUpAuthError(error),
+              onSubmit: {
+                fields: {},
+                form: normalizeSignUpAuthError(error),
+              },
             });
           },
           onSuccess: async () => {
