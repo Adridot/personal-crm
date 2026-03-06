@@ -38,7 +38,7 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 ## MVP-004: Bootstrap React frontend application
 
 - Objective: establish the frontend project skeleton.
-- Scope: Vite app, TanStack Router route shell, shadcn/ui baseline on Base UI, TanStack Query setup, and a local `/api` proxy to the NestJS backend.
+- Scope: Vite app, TanStack Router route shell, shadcn/ui baseline on Base UI, TanStack Query setup, a local `/api` proxy to the NestJS backend, and the initial file-based route structure.
 - Implementation notes: use the shadcn CLI in a controlled way; keep only the generated baseline needed for the shell; do not build feature pages yet; do not adopt TanStack Start in MVP while NestJS remains the primary backend.
 - Dependencies: MVP-001.
 - Acceptance criteria: frontend boots locally, renders an application shell, uses TanStack Router for the initial route tree, and has a working Query client/provider baseline.
@@ -48,7 +48,7 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 
 - Objective: make all future UI strings translation-ready.
 - Scope: Intlayer provider wiring, `apps/web/intlayer.config.ts`, locale-aware routing helpers, colocated `.content.ts` dictionaries, initial English and French scaffolding, and a visible locale switcher in the shell.
-- Implementation notes: use Intlayer with `prefix-no-default`, English as the default locale, and cookie + localStorage persistence; rely on `intlayerProxy()` for proxy-backed locale detection; keep canonical English route slugs; translate the shell pages first; keep the editor, CMS, AI, compiler extraction, and custom localized rewrites out of scope.
+- Implementation notes: use Intlayer with `prefix-no-default`, English as the default locale, and cookie + localStorage persistence; rely on `intlayerProxy()` for proxy-backed locale detection; keep canonical English route slugs; translate the shell pages first; keep the editor, CMS, AI, compiler extraction, and custom localized rewrites out of scope; prefer colocated `page.content.ts` files as routes become feature folders.
 - Dependencies: MVP-004.
 - Acceptance criteria:
   - visible shell strings resolve through Intlayer,
@@ -71,7 +71,7 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 
 - Objective: support account registration, login, logout, and session retrieval.
 - Scope: Better Auth wiring, community Nest integration, global auth guard, frontend auth client, localized sign-in and sign-up pages, same-origin auth transport, `GET /api/account/me`, and initial protection of dashboard and contacts.
-- Implementation notes: keep Better Auth native endpoints at `/api/auth/*`, use cookie-backed sessions, preserve same-origin frontend transport through `/api`, and keep the current compatibility pin on Better Auth until the community Nest package is updated.
+- Implementation notes: keep Better Auth native endpoints at `/api/auth/*`, use cookie-backed sessions, preserve same-origin frontend transport through `/api`, keep the current compatibility pin on Better Auth until the community Nest package is updated, and treat `GET /api/account/me` as the approved stabilized frontend session contract.
 - Dependencies: MVP-003, MVP-004, MVP-006.
 - Acceptance criteria: a user can register with name, email, and password, is automatically signed in after signup, can log in and out, can retrieve the current session through `/api/account/me`, and cannot access dashboard or contacts anonymously.
 - Estimate: 2 days
@@ -80,7 +80,7 @@ This backlog is intentionally issue-ready. Each item is sized to roughly 1 to 2 
 
 - Objective: extend the established auth protection baseline consistently across future feature routes.
 - Scope: public route annotations, protection patterns for new backend controllers and new frontend feature routes, and regression coverage for anonymous access.
-- Implementation notes: build on the global-guard and protected-layout foundation from MVP-007 instead of introducing a second auth layer.
+- Implementation notes: build on the global-guard and protected-layout foundation from MVP-007 instead of introducing a second auth layer; for the frontend, prefer pathless `_guest` and `_authenticated` layouts over duplicating per-page guard logic.
 - Dependencies: MVP-007.
 - Acceptance criteria: newly added protected routes and endpoints are inaccessible without a valid session, while intentionally public endpoints remain explicitly anonymous.
 - Estimate: 1 day

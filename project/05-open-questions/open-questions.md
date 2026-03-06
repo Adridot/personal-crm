@@ -4,7 +4,10 @@ The initial high-priority questions from the planning phase have now been resolv
 
 ## Active Open Questions
 
-No high-priority open questions are currently tracked in this file.
+| Question | Why It Is Open |
+| --- | --- |
+| Should the frontend keep `GET /api/account/me` as the stable current-user contract, or intentionally promote Better Auth `GET /api/auth/get-session` to that role? | Current frontend auth work can be implemented either way, but only one contract should become canonical. |
+| When should auth/session payload schemas be promoted back into `packages/contracts`? | The contract package is still intentionally narrow, but session payloads are now close to becoming stable enough for promotion. |
 
 ## Recently Resolved Decisions
 

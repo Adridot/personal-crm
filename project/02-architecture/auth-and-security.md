@@ -10,6 +10,7 @@
 - Auth user identifier baseline: text/string id from Better Auth defaults, not UUID.
 - Authorization baseline: global auth guard enabled in Nest, with explicit anonymous annotations for public endpoints.
 - Frontend auth transport: same-origin via the frontend `/api` path, backed by the Vite proxy in development and a reverse proxy in deployed environments.
+- Better Auth remains pinned to `1.4.21` while the selected Nest community integration catches up with newer runtime lines.
 
 ## Security Decisions
 
@@ -30,6 +31,7 @@
 - Ensure session invalidation works on logout.
 - Keep Better Auth native endpoints mounted at `/api/auth/*`.
 - Expose `GET /api/account/me` as the app-owned authenticated session summary endpoint.
+- Treat provider-native session payloads as implementation details unless the project intentionally promotes them to an application-level contract.
 
 ### OAuth Token Handling
 

@@ -54,6 +54,7 @@ The first internal package should have one purpose: define shared API contracts.
 - Drizzle table definitions, persistence models, Nest service internals, and auth implementation details must not be exported from `packages/contracts`.
 - Additional internal packages should be created only when they have a distinct responsibility, for example config, UI, or generated clients.
 - During workspace bootstrap, `packages/contracts` may exist only as a placeholder package. Real schemas should be added when shared endpoint contracts actually stabilize.
+- App-local parsing is acceptable while a contract is still moving, but once an endpoint is treated as stable it should be promoted back into a shared schema in `packages/contracts`.
 
 ## Backend Domain Modules
 
@@ -83,12 +84,16 @@ The frontend is a single-page application with:
 
 - dedicated localized auth pages,
 - authenticated routes,
+- explicit guest routes,
 - translation-ready copy,
 - dashboard and contacts views as first-class pages,
 - TanStack Router as the routing baseline,
 - TanStack Query for server data synchronization,
 - Intlayer for frontend internationalization,
 - UI primitives based on shadcn/ui configured for Base UI,
+- file-based route organization as the scaling default,
+- pathless guest and authenticated layout routes for access control,
+- router-level pending, error, and not-found fallbacks for consistent UX,
 - and a Vite development server proxying `/api` calls to the NestJS backend.
 
 The auth transport baseline is same-origin:
@@ -108,6 +113,14 @@ The approved frontend i18n baseline is:
 - proxy-backed locale detection through `intlayerProxy()`,
 - colocated `.content.ts` dictionaries near routes and UI components,
 - and no editor, CMS, AI, or localized rewrite features in MVP.
+
+The approved frontend route-organization baseline is:
+
+- TanStack Router file-based routing,
+- locale-prefixed route trees under `/{-$locale}`,
+- pathless `_guest` and `_authenticated` layout routes,
+- feature-oriented route folders when page modules grow,
+- and router-level default fallback components rather than ad hoc page-level fallback duplication.
 
 ## Data Ownership Model
 

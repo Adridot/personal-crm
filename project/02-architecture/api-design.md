@@ -47,6 +47,7 @@ This document records the intended REST surface and API conventions. It is not a
 - Frontend code should import inferred types from those schemas instead of re-declaring DTO shapes.
 - Backend code must not expose Drizzle entities or persistence-layer shapes as public API contracts.
 - Keep the contracts package narrow: browser-safe, server-safe, and free of backend-only side effects.
+- Direct frontend parsing of provider-native auth payloads should remain an implementation detail until the application-level contract is intentionally stabilized.
 
 ### Error Format
 
@@ -82,6 +83,7 @@ Notes:
 - Better Auth keeps its native auth endpoints at `/api/auth/*`.
 - `GET /api/account/me` is the app-owned authenticated session endpoint used by the frontend shell and route guards.
 - The frontend talks to these endpoints through same-origin `/api` requests, proxied to NestJS in development.
+- If a branch temporarily consumes `GET /api/auth/get-session` directly, treat that as branch-local iteration rather than a canonical application contract unless the ADRs are explicitly updated.
 
 ### Contacts
 
