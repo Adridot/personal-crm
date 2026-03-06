@@ -8,8 +8,6 @@ import { defaultLocale, getHTMLTextDir } from "intlayer";
 import { useEffect } from "react";
 import { IntlayerProvider } from "react-intlayer";
 
-import { AppShell } from "@/components/app-shell";
-
 interface RouterContext {
   queryClient: QueryClient;
 }
@@ -35,9 +33,7 @@ function RootRouteComponent() {
       isCookieEnabled
       locale={locale}
     >
-      <AppShell>
-        <Outlet />
-      </AppShell>
+      <Outlet />
     </IntlayerProvider>
   );
 }

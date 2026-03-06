@@ -25,7 +25,23 @@ const appShellContent = {
     }),
     contactsLabel: t({
       en: "Contacts",
-      fr: "Contacts",
+      fr: "Carnet",
+    }),
+    accountLabel: t({
+      en: "Account",
+      fr: "Compte",
+    }),
+    signOutLabel: t({
+      en: "Sign out",
+      fr: "Se déconnecter",
+    }),
+    signingOutLabel: t({
+      en: "Signing out...",
+      fr: "Déconnexion...",
+    }),
+    signOutErrorLabel: t({
+      en: "Unable to sign out right now. Please try again.",
+      fr: "Impossible de se déconnecter pour le moment. Veuillez réessayer.",
     }),
   },
 } satisfies Dictionary;

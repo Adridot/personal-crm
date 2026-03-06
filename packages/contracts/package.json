@@ -2,6 +2,11 @@
   "name": "@personal-crm/contracts",
   "private": true,
   "version": "0.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts"
+    }
+  },
   "types": "./src/index.ts",
   "scripts": {
     "build": "node -e \"console.log('TODO: add contracts build when shared schemas exist')\"",
