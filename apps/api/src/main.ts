@@ -5,14 +5,11 @@ import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 
 import { AppModule } from "./app.module";
+import { isOriginAllowed } from "./config/origins";
 
 const DEFAULT_API_PORT = 3000;
 const DEFAULT_API_HOST = "0.0.0.0";
-const TRAILING_SLASH_REGEX = /\/$/;
 type CorsOriginCallback = (error: Error | null, allow?: boolean) => void;
-
-const normalizeOrigin = (origin: string): string =>
-  origin.replace(TRAILING_SLASH_REGEX, "");
 
 const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create(AppModule, {
@@ -36,10 +33,9 @@ const bootstrap = async (): Promise<void> => {
         return;
       }
 
-      const normalizedOrigin = normalizeOrigin(requestOrigin);
-      const isAllowed = allowedOrigins.includes(normalizedOrigin);
+      const isAllowed = isOriginAllowed(requestOrigin, allowedOrigins);
 
-      callback(isAllowed ? null : new Error("Not allowed by CORS"), isAllowed);
+      callback(null, isAllowed);
     },
     optionsSuccessStatus: 204,
   });
